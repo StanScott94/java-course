@@ -10,14 +10,23 @@ package com.stantonscott.javabasics.exercises;
 public class Strings {
 
     /**
+     * Get the string that is the longest
+     * @param string1
+     * @param string2
+     * @return longest of two strings
+     */
+    public String  getLongestString(String string1, String string2) {
+        return string1.length() > string2.length() ? string1 : string2;
+    }
+
+    /**
      * Check if a string contains another string
      * @param string1 reference string
      * @param string2 string to check
      * @return true if string1 contains string2
      */
     public boolean string1ContainsString2(String string1, String string2) {
-        //code goes here
-        return false;
+        return string1.contains(string2) ? true : false;
     }
 
     /**
@@ -26,9 +35,16 @@ public class Strings {
      * @return string containing only letters
      */
     public String getLettersOnly(String string1) {
-        //code goes here
-        return null;
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < string1.length(); i++) {
+            char characterAtIndexI = string1.charAt(i);
+            if (characterAtIndexI >= 97  && characterAtIndexI <= 122 || characterAtIndexI >= 65  && characterAtIndexI <= 90) {
+                stringBuilder.append(characterAtIndexI);
+            }
+        }
+        return stringBuilder.toString();
     }
+
     /**
      * Get the character from the given string at the index supplied
      * @param string
@@ -36,8 +52,7 @@ public class Strings {
      * @return character at index
      */
     public char getCharacterAtIndex(String string, int index) {
-        //code goes here
-        return 0;
+        return string.charAt(index);
     }
 
     /**
@@ -47,8 +62,7 @@ public class Strings {
      * @return true if reference string ends with string to check
      */
     public boolean doesFirstStringEndWithSecondString(String string1, String string2) {
-        //code goes here
-        return false;
+        return string1.endsWith(string2);
     }
 
     /**
@@ -58,8 +72,7 @@ public class Strings {
      * @return first alphabetically ordered string
      */
     public String getFirstAlphabeticalString(String string1, String string2) {
-        //code goes here
-        return null;
+        return string1.compareTo(string2) < 0 ? string1 : string2;
     }
 
     /**
@@ -70,7 +83,6 @@ public class Strings {
      * @return string with reference replaced by replacementString
      */
     public String replaceInstancesOfReferenceString(String reference, String string, String replacementString) {
-        //code goes here
-        return null;
+        return string.replace(reference, replacementString);
     }
 }

@@ -16,6 +16,15 @@ public class StringsTest {
     private Strings strings = new Strings();
 
     @Test
+    public void testGetLongestString() {
+        String longString = "platitudinous";
+        String shortString = "boring";
+        String result = strings.getLongestString(longString, shortString);
+
+        assertEquals(longString, result);
+    }
+
+    @Test
     public void testString1ContainsString2() {
         String reference = "platitudinous";
         String firstString = "tudi";
@@ -30,10 +39,14 @@ public class StringsTest {
     @Test
     public void testGetLettersOnly() {
         String expectedResult = "platitudinous";
+        String expectedResultCamelCase = "platitudinousCamelCase";
         String alphaNumeric = "p3lat44itudino123us";
+        String alphaNumericCamelCase = "plat33itud1inous2323CamelCase";
         String result = strings.getLettersOnly(alphaNumeric);
+        String resultCamelCase = strings.getLettersOnly(alphaNumericCamelCase);
 
         assertEquals(expectedResult, result);
+        assertEquals(expectedResultCamelCase, resultCamelCase);
     }
 
     @Test
