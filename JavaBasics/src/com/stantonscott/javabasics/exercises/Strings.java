@@ -10,6 +10,17 @@ package com.stantonscott.javabasics.exercises;
 public class Strings {
 
     /**
+     * Get the string that is the longest
+     * @param string1
+     * @param string2
+     * @return longest of two strings
+     */
+    public String  getLongestString(String string1, String string2) {
+        //code goes here
+        return null;
+    }
+
+    /**
      * Check if a string contains another string
      * @param string1 reference string
      * @param string2 string to check
