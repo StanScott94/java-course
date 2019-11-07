@@ -17,8 +17,7 @@ public class Numbers {
      * @return sum of all parameters
      */
 	public int addition(int firstInt, int SecondInt, int thirdInt) {
-		//code goes here
-		return 0;
+		return firstInt + SecondInt + thirdInt;
 	}
 	
     /**
@@ -29,8 +28,11 @@ public class Numbers {
      * @return sum of all positive parameters
      */
 	public int addOnlyPositiveNumbers(int firstInt, int SecondInt, int thirdInt) {
-		//code goes here
-		return 0;
+		int sum = 0;
+		sum = firstInt >= 0 ? sum + firstInt : sum;
+		sum = SecondInt >= 0 ? sum + SecondInt : sum;
+		sum = thirdInt >= 0 ? sum + thirdInt : sum;
+		return sum;
 	}
 	
     /**
@@ -40,8 +42,7 @@ public class Numbers {
      * @return sum after subtraction
      */
 	public int subtraction(int numberToSubtractFrom, int numberToSubtract) {
-		//code goes here
-		return 0;
+		return numberToSubtractFrom - numberToSubtract;
 	}
 	
     /**
@@ -51,8 +52,7 @@ public class Numbers {
      * @return sum after multiplication
      */
 	public int multiplication(int firstInt, int SecondInt) {
-		//code goes here
-		return 0;
+		return firstInt * SecondInt;
 	}
 	
     /**
@@ -62,8 +62,7 @@ public class Numbers {
      * @return sum after division
      */
 	public int division(int numberToDivide, int numberToDivideBy) {
-		//code goes here
-		return 0;
+		return numberToDivide / numberToDivideBy;
 	}
 	
     /**
@@ -72,7 +71,6 @@ public class Numbers {
      * @return even number
      */
 	public boolean evenNumbers(int firstInt) {
-		//code goes here
-		return false;
+		return firstInt % 2 == 0;
 	}
 }

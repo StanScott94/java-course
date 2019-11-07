@@ -17,11 +17,11 @@ public class NumbersTest {
 	@Test
 	public void addition() {
 		int expecting10 = numbers.addition(5, 5, 0);
-		int expecting11 = numbers.addition(16, -32, 5);
+		int expectingNegative11 = numbers.addition(16, -32, 5);
 		int expecting88 = numbers.addition(62, 19, 7);
 		
 		assertEquals(expecting10, 10);
-		assertEquals(expecting11, 11);
+		assertEquals(expectingNegative11, -11);
 		assertEquals(expecting88, 88);
 	}
 	
