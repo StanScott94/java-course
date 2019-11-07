@@ -88,5 +88,4 @@ public class StringsTest {
 
         assertEquals("the earth is not flat",result);
     }
-
 }
