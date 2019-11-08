@@ -25,13 +25,17 @@ public class userInput {
 		// Create a Scanner object to get keyboard input
 		Scanner userInputScanner = new Scanner(System.in);
 		try {
+			//Set this to false, when the program should shut down
 			boolean isRunning = true;
+			//WHILE LOOP control flow structure to keep asking the user for new input
 			while (isRunning) {
+				//Print text in brackets to the standard output
 				System.out.println("Enter text and press Enter");
 
 				String userInput = userInputScanner.nextLine(); // Read user input
 				System.out.println("Text entered by user: " + userInput); // Output user input
 
+				//IF statement to decide what to do with the user input
 				if (userInput.toLowerCase().equals(HELP)) {
 					System.out.println("Help menu");
 					System.out.println("- help = Help menue");
@@ -44,6 +48,7 @@ public class userInput {
 					System.out.println(formatter.format(date));
 				} else if (userInput.toLowerCase().equals(QUIT)) {
 					System.out.println("Good Bye Traveler");
+					//Set loop variable to false to stop the program
 					isRunning = false;
 				}
 			}

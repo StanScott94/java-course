@@ -28,6 +28,8 @@ public class Numbers {
      * @return sum of all positive parameters
      */
 	public int addOnlyPositiveNumbers(int firstInt, int SecondInt, int thirdInt) {
+		//Tip: use an IF statement to decide if an entered number is positive
+		//Tip: Try typing "if" in a new line and press "strg"+"space" there will be a context menu with an option that shows you how an if statement looks like
 		//code goes here
 		return 0;
 	}
@@ -55,10 +57,10 @@ public class Numbers {
 	}
 	
     /**
-     * Get the sum after division
+     * Get the result after division
      * @param firstInt
      * @param SecondInt
-     * @return sum after division
+     * @return result after division
      */
 	public int division(int numberToDivide, int numberToDivideBy) {
 		//code goes here
@@ -72,6 +74,8 @@ public class Numbers {
      */
 	public boolean evenNumbers(int firstInt) {
 		//code goes here
+		//Tip: Look into the modulo operator (%)
+		//You can find an explanation on what modulo does here https://java.meritcampus.com/core-java-topics/modulus-operator-in-java
 		return false;
 	}
 }
