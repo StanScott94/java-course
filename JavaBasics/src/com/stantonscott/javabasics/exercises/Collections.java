@@ -84,29 +84,27 @@ public class Collections {
      * @param keyToFind
      * @return map with value removed
      */
-    public Map<String, Integer> removeValue(Map<String, Integer> map, String keyToFind) {
+    public Map<String, Integer> removeEntry(Map<String, Integer> map, String keyToFind) {
     	//code goes here
         return null;
     }
     
 	/**
 	 * Remove entries that have the given char in the key
-	 *
 	 * @param map
 	 * @return map with entries removed where key contains char
 	 */
-	public Map<String, String> removeEntry(Map<String, String> map, char chartoFind) {
+	public Map<String, Integer> findKeyAndRemoveEntry(Map<String, Integer> map, char chartoFind) {
 		//code goes here
 		return null;
 	}
 	
 	/**
 	 * Replace any value of any entry with a newValue if its key contains the given char
-	 *
 	 * @param map
-	 * @return
+	 * @return map with values replaced where key contains char
 	 */
-	public Map<String, String> replaceValue(Map<String, Integer> map, char chartoFind, Integer newValue) {
+	public Map<String, Integer>  findKeyAndReplaceValue(Map<String, Integer> map, char chartoFind, Integer newValue) {
 		//code goes here
 		return null;
 	}
