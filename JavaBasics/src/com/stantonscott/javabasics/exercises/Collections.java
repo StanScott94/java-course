@@ -94,7 +94,7 @@ public class Collections {
 	 * @param map
 	 * @return map with entries removed where key contains char
 	 */
-	public Map<String, Integer> findKeyAndRemoveEntry(Map<String, Integer> map, char chartoFind) {
+	public Map<String, Integer> findKeyAndRemoveEntry(Map<String, Integer> map, String stringToFind) {
 		//code goes here
 		return null;
 	}
@@ -104,7 +104,7 @@ public class Collections {
 	 * @param map
 	 * @return map with values replaced where key contains char
 	 */
-	public Map<String, Integer>  findKeyAndReplaceValue(Map<String, Integer> map, char chartoFind, Integer newValue) {
+	public Map<String, Integer>  findKeyAndReplaceValue(Map<String, Integer> map, String stringToFind, Integer newValue) {
 		//code goes here
 		return null;
 	}

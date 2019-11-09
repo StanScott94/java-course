@@ -123,17 +123,17 @@ public class CollectionsTest {
 		String key1 = "java";
 		String key2 = "spring";
 		String key3 = "JDBC";
+		String stringToFind ="D";
 		Integer value1 = 42;
 		Integer value2 = 13;
 		Integer value3 = 999;
-		char chartoFind = 'D';
 		
 		Map<String, Integer> map = new HashMap<>();
 		map.put(key1, value1);
 		map.put(key2, value2);
 		map.put(key3, value3);
 		
-		Map<String, Integer> result = collections.findKeyAndRemoveEntry(map, chartoFind);
+		Map<String, Integer> result = collections.findKeyAndRemoveEntry(map, stringToFind);
 		
 		assertFalse(result.containsKey(key3));
 	}
@@ -143,18 +143,18 @@ public class CollectionsTest {
 		String key1 = "java";
 		String key2 = "spring";
 		String key3 = "JDBC";
+		String stringToFind ="D";
 		Integer newValue = 0;
 		Integer value1 = 42;
 		Integer value2 = 13;
 		Integer value3 = 999;
-		char chartoFind = 'D';
 		
 		Map<String, Integer> map = new HashMap<>();
 		map.put(key1, value1);
 		map.put(key2, value2);
 		map.put(key3, value3);
 		
-		Map<String, Integer> result = collections.findKeyAndReplaceValue(map, chartoFind, newValue);
+		Map<String, Integer> result = collections.findKeyAndReplaceValue(map, stringToFind, newValue);
 		
 		assertEquals(result.get(key1), value1);
 		assertEquals(result.get(key2), value2);
