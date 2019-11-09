@@ -1,5 +1,8 @@
 package com.stantonscott.javabasics.exercises;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,8 +24,7 @@ public class Collections {
      * @return array of strings
      */
 	public String[] createStringArray(String string1, String string2, String string3, String string4) {
-		//code goes here
-		return null;
+		return new String[] {string1, string2, string3, string4};
 	}
 	
     /**
@@ -34,8 +36,7 @@ public class Collections {
      * @return array of ints
      */
 	public int[] createIntArray(int int1, int int2, int int3, int int4) {
-		//code goes here
-		return null;
+		return new int[] {int1, int2, int3, int4};
 	}
 	
     /**
@@ -47,8 +48,7 @@ public class Collections {
      * @return list of strings
      */
 	public List<String> createArrayListOfStrings(String string1, String string2, String string3, String string4) {
-		//code goes here
-		return null;
+		return new ArrayList<>(Arrays.asList(string1, string2, string3, string4));
 	}
 	
     /**
@@ -62,8 +62,11 @@ public class Collections {
      * @return array of ints
      */
 	public Map<String, Integer> createMap(String key1, String key2, String key3, int value1, int value2, int value3) {
-		//code goes here
-		return null;
+		return new HashMap<String, Integer>() {{
+	        put(key1, value1);
+	        put(key2, value2);
+	        put(key3, value3);
+	    }};
 	}
 	
     /**
@@ -74,8 +77,8 @@ public class Collections {
      * @return map with value replaced for key
      */
     public Map<String, Integer> findAndReplace(Map<String, Integer> map, String keyToFind, int newValue) {
-    	//code goes here
-        return null;
+        map.replace(keyToFind, newValue);
+        return map;
     }
     
     /**
@@ -85,8 +88,8 @@ public class Collections {
      * @return map with value removed
      */
     public Map<String, Integer> removeEntry(Map<String, Integer> map, String keyToFind) {
-    	//code goes here
-        return null;
+    	map.remove(keyToFind);
+        return map;
     }
     
 	/**
@@ -94,9 +97,13 @@ public class Collections {
 	 * @param map
 	 * @return map with entries removed where key contains char
 	 */
-	public Map<String, Integer> findKeyAndRemoveEntry(Map<String, Integer> map, char chartoFind) {
-		//code goes here
-		return null;
+	public Map<String, Integer> findKeyAndRemoveEntry(Map<String, Integer> map, String stringToFind) {
+		for (String entry : map.keySet()) {
+		    if (entry.contains(stringToFind)) {
+		    	map.remove(entry);
+		    }
+		}
+		return map;
 	}
 	
 	/**
@@ -104,8 +111,12 @@ public class Collections {
 	 * @param map
 	 * @return map with values replaced where key contains char
 	 */
-	public Map<String, Integer>  findKeyAndReplaceValue(Map<String, Integer> map, char chartoFind, Integer newValue) {
-		//code goes here
-		return null;
+	public Map<String, Integer>  findKeyAndReplaceValue(Map<String, Integer> map, String stringToFind, Integer newValue) {
+		for (String entry : map.keySet()) {
+		    if (entry.contains(stringToFind)) {
+		    	map.replace(entry, newValue);
+		    }
+		}
+		return map;
 	}
 }
