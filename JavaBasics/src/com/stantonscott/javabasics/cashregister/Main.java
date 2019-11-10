@@ -57,7 +57,7 @@ public class Main {
 	            	displayStock(stock, price);
 	            } else if (userInput.toLowerCase().equals(CART)) {
 	            	Float totalPrice = calculateCart(cart, price);
-	            	displayCheckout(cart, price, totalPrice);
+	            	displayCart(cart, price, totalPrice);
 	            } else if (userInput.toLowerCase().startsWith(ADD)) {
 	            	addItemToCart(userInput, stock, cart, price);
 	            } else if (userInput.toLowerCase().startsWith(REMOVE)) {
@@ -76,7 +76,6 @@ public class Main {
 	public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) {
 		
 		//creates a list of strings to use when displaying the menu
-		menuItems = new ArrayList<String>();
 		menuItems.add("Help Menu");
 		menuItems.add("help = Help Menu");
 		menuItems.add("stock = Stock List");
@@ -86,7 +85,6 @@ public class Main {
 		menuItems.add("remove <amount> <item> = Add items to cart");
 
 		//creates a key value map to display and track stock amounts
-		stock = new HashMap<>();
 		stock.put("banana", 15);
 		stock.put("milk", 2);
 		stock.put("bread", 8);
@@ -94,7 +92,6 @@ public class Main {
 		stock.put("soda", 5);
 
 		//creates a key value map to display and track prices
-		price = new HashMap<>();
 		price.put("banana", 1.5F);
 		price.put("milk", 2.0F);
 		price.put("bread", 1.99F);
@@ -131,7 +128,7 @@ public class Main {
 				
 				stock.put(itemToAdd, stock.get(itemToAdd) - amountToAdd);
             	Float totalPrice = calculateCart(cart, price);
-            	displayCheckout(cart, price, totalPrice);
+            	displayCart(cart, price, totalPrice);
 			} else {
 				displayOutOfStock();
 			}
@@ -160,7 +157,7 @@ public class Main {
 				}
 			
             	Float totalPrice = calculateCart(cart, price);
-            	displayCheckout(cart, price, totalPrice);
+            	displayCart(cart, price, totalPrice);
 			} else {
 				displayError();
 			}
