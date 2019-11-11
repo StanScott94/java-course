@@ -4,6 +4,7 @@ This is basic java course that will take you from the java language to web-appli
 
 Most of the exercises have Junit test that can check if your code is correct, please search for the test class related 
 to your exercise and run it to test your code.
+e.g. ( exercise = Numbers ) ( test = NumbersTest )
 
 ## Reuirements
 * GIT
