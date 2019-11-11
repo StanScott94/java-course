@@ -17,7 +17,8 @@ public class Numbers {
      * @return sum of all parameters
      */
 	public int addition(int firstInt, int SecondInt, int thirdInt) {
-		return firstInt + SecondInt + thirdInt;
+		//code goes here
+		return 0;
 	}
 	
     /**
@@ -34,7 +35,7 @@ public class Numbers {
 	
     /**
      * Get the sum after subtraction
-     * @param number
+     * @param numberToSubtractFrom
      * @param numberToSubtract
      * @return sum after subtraction
      */
@@ -56,8 +57,8 @@ public class Numbers {
 	
     /**
      * Get the sum after division
-     * @param firstInt
-     * @param SecondInt
+     * @param numberToDivide
+     * @param numberToDivideBy
      * @return sum after division
      */
 	public int division(int numberToDivide, int numberToDivideBy) {

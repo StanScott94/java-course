@@ -1,8 +1,6 @@
 package com.stantonscott.javabasics.playground;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @author stantonscott
@@ -13,27 +11,53 @@ import java.util.Scanner;
  */
 public class userInput {
 
+    public static List<String> stockList;
+    public static Map<String, Integer> stock;
+
     private static final String HELP = "help";
-    private static final String TIME = "time";
+    private static final String STOCK = "stock";
 
     public static void main(String[] args) {
+        setup();
         Scanner userInputScanner = new Scanner(System.in); // Create a Scanner object to get keyboard input
         while(true) {
-            System.out.println("Enter text and press Enter");
+            System.out.println("Enter help to see menu");
 
             String userInput = userInputScanner.nextLine(); // Read user input
-            System.out.println("Text entered by user: " + userInput); // Output user input
 
             if (userInput.toLowerCase().equals(HELP)) {
                 System.out.println("Help menu");
-                System.out.println("- help = Help menue");
-                System.out.println("- time = Print current time");
-                System.out.println("create a help menu and maybe your own commands");
-            } else if (userInput.toLowerCase().equals(TIME)) {
-                SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd 'at' HH:mm:ss z");
-                Date date = new Date(System.currentTimeMillis());
-                System.out.println(formatter.format(date));
+                System.out.println(HELP + " = Help menue");
+                System.out.println(STOCK + " = View what's in stock");
+            } else if (userInput.toLowerCase().equals(STOCK)) {
+                stock.forEach(
+                        (string, integer) -> System.out.println(integer + " x " + string + " currently in stock")
+                );
             }
         }
+    }
+
+    private static void setup() {
+        stockList = new ArrayList<String>() {
+            {
+                add("banana");
+                add("soap");
+                add("toothpaste");
+                add("bread");
+                add("orange juice");
+                add("milk");
+            }
+        };
+
+        stock = new HashMap<String, Integer>() {
+            {
+                put("banana", 32);
+                put("soap", 4);
+                put("toothpaste", 11);
+                put("bread", 9);
+                put("orange juice", 0);
+                put("milk", 8);
+            };
+        };
     }
 }
