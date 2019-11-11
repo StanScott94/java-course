@@ -6,6 +6,9 @@ Most of the exercises have Junit test that can check if your code is correct, pl
 to your exercise and run it to test your code.
 e.g. ( exercise = Numbers ) ( test = NumbersTest )
 
+JUnit needs to be added to your buildpath to run the tests 
+richt click project - build path - add library - JUnit - JUnit4
+
 ## Reuirements
 * GIT
 * JDK 1.8 or higher
