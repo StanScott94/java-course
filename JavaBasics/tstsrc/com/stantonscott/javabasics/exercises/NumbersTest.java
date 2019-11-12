@@ -21,7 +21,7 @@ public class NumbersTest {
 		int expecting88 = numbers.addition(62, 19, 7);
 		
 		assertEquals(expecting10, 10);
-		assertEquals(expecting11, 11);
+		assertEquals(expecting11, -11);
 		assertEquals(expecting88, 88);
 	}
 	
