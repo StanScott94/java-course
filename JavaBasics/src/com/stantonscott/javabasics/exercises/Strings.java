@@ -26,7 +26,7 @@ public class Strings {
      * @return true if string1 contains string2
      */
     public boolean string1ContainsString2(String string1, String string2) {
-        return string1.contains(string2) ? true : false;
+        return string1.contains(string2);
     }
 
     /**
