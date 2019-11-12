@@ -98,11 +98,7 @@ public class Collections {
 	 * @return map with entries removed where key contains char
 	 */
 	public Map<String, Integer> findKeyAndRemoveEntry(Map<String, Integer> map, String stringToFind) {
-		map.forEach( (k, v) -> {
-			if (k.contains(stringToFind)) {
-				map.remove(k);
-			}
-		} );
+		map.entrySet().removeIf(entry -> entry.getKey().contains(stringToFind));
 		return map;
 	}
 	
@@ -112,7 +108,7 @@ public class Collections {
 	 * @return map with values replaced where key contains char
 	 */
 	public Map<String, Integer>  findKeyAndReplaceValue(Map<String, Integer> map, String stringToFind, Integer newValue) {
-		map.forEach( (k, v) -> {
+		map.forEach((k, v) -> {
 			if (k.contains(stringToFind)) {
 				map.replace(k, newValue);
 			}
