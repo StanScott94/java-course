@@ -19,21 +19,10 @@ public class Numbers {
      */
     public int addition(int firstInt, int SecondInt, int thirdInt) {
 
-        int[] ints = new int[3];
-        ints[0] = firstInt;
-        ints[1] = SecondInt;
-        ints[2] = thirdInt;
-
-        int zero = 0;
-
-        for (int i = 0; i < ints.length; i++) {
-            if (ints[i] > 0) {
-                zero += ints[i];
-            } else zero -= ints[i];
-        }
 
 
-        return zero;
+
+        return firstInt + SecondInt + thirdInt;
     }
 
     /**
