@@ -27,10 +27,10 @@ public class Main {
 	//
 	// ============================================================================================
 
-	// main method where the program starts and ends
+	// main method where all java programs starts
 	public static void main(String[] args) {
 
-		// define global class variables
+		// define method variables
 		List<String> menuItems = new ArrayList<>();
 		Map<String, Integer> stock = new HashMap<>();
 		Map<String, Float> price = new HashMap<>();
@@ -44,7 +44,7 @@ public class Main {
 		}
 
 		// create a Scanner object to get keyboard input from command line
-		// using "try with recourses" to handle errors
+		// using "try with resources" to handle errors
 		// https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
 		try (Scanner userInputScanner = new Scanner(System.in)) {
 			while (true) {
@@ -82,6 +82,7 @@ public class Main {
 	//
 	// ============================================================================================
 
+	// fill collections with values from and external configuration file
 	public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) throws IOException {
 
 		String[] menuItemsFromConfig = getValuesFromConfigFile("JavaBasics/configfiles/cashregister/menuItemsConfig.txt");
@@ -94,6 +95,9 @@ public class Main {
 
 	}
 
+	// open file, read file into a string and separate the values by ","
+	// using "try with resources" to handle errors
+	// https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
 	public static String[] getValuesFromConfigFile(String configPath) throws IOException {
 		try (BufferedReader buffer =  Files.newBufferedReader(Paths.get(configPath))) {
 			return (buffer.lines().collect(Collectors.joining("\n"))).split(",");
@@ -104,6 +108,7 @@ public class Main {
 		Arrays.asList(configuredValues);
 	}
 
+	// fill a map separating the key and values by ":"
 	private static void fillStockWithConfiguredValues(Map<String, Integer> map, String[] configuredValues) {
 		for (String item: configuredValues) {
 			String[] keyValues = item.split(":");
@@ -113,6 +118,7 @@ public class Main {
 		}
 	}
 
+	// fill a map separating the key and values by ":"
 	private static void fillPriceWithConfiguredValues(Map<String, Float> map, String[] configuredValues) {
 		for (String item: configuredValues) {
 			String[] keyValues = item.split(":");
