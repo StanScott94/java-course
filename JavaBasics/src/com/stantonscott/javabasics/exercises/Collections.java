@@ -68,7 +68,7 @@ public class Collections {
 	        put(key3, value3);
 	    }};
 	}
-	
+
     /**
      * Replace the value of a key value map
      * @param map
