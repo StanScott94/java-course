@@ -19,7 +19,7 @@ import org.junit.Test;
 public class CollectionsTest {
 	
 	Collections collections = new Collections();
-
+	
 	@Test
 	public void testCreateStringArray() {
 		String string1 = "java";
@@ -55,7 +55,7 @@ public class CollectionsTest {
 		String string3 = "JDBC";
 		String string4 = "JPA";
 		List<String> result = collections.createArrayListOfStrings(string1, string2, string3, string4);
-
+	
 		assertEquals(result.get(0), string1);
 		assertEquals(result.get(1), string2);
 		assertEquals(result.get(2), string3);
@@ -71,14 +71,14 @@ public class CollectionsTest {
 		Integer value2 = 13;
 		Integer value3 = 999;
 		Map<String, Integer> result = collections.createMap(key1, key2, key3, value1, value2, value3);
-
+	
 		assertEquals(result.get(key1), value1);
 		assertEquals(result.get(key2), value2);
 		assertEquals(result.get(key3), value3);
 	}
 	
 	@Test
-    public void testFindAndReplace() {
+	public void testFindAndReplace() {
 		String key1 = "java";
 		String key2 = "spring";
 		String key3 = "JDBC";
@@ -93,14 +93,14 @@ public class CollectionsTest {
 		map.put(key3, value3);
 		
 		Map<String, Integer> result = collections.findAndReplace(map, key3, newValue);
-
+	
 		assertEquals(result.get(key1), value1);
 		assertEquals(result.get(key2), value2);
 		assertEquals(result.get(key3), newValue);
-    }
-    
+	}
+	
 	@Test
-    public void testRemoveEntry() {
+	public void testRemoveEntry() {
 		String key1 = "java";
 		String key2 = "spring";
 		String key3 = "JDBC";

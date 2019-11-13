@@ -14,53 +14,53 @@ import java.util.Map;
  * <p>Project Name: JavaBasics</p>
  */
 public class Collections {
-
-    /**
-     * Get a string array
-     * @param string1
-     * @param string2
-     * @param string3
-     * @param string4
-     * @return array of strings
-     */
+	
+	/**
+	 * Get a string array
+	 * @param string1
+	 * @param string2
+	 * @param string3
+	 * @param string4
+	 * @return array of strings
+	 */
 	public String[] createStringArray(String string1, String string2, String string3, String string4) {
 		return new String[] {string1, string2, string3, string4};
 	}
 	
-    /**
-     * Get an int array
-     * @param int1
-     * @param int2
-     * @param int3
-     * @param int4
-     * @return array of ints
-     */
+	/**
+	 * Get an int array
+	 * @param int1
+	 * @param int2
+	 * @param int3
+	 * @param int4
+	 * @return array of ints
+	 */
 	public int[] createIntArray(int int1, int int2, int int3, int int4) {
 		return new int[] {int1, int2, int3, int4};
 	}
 	
-    /**
-     * Get a list of strings
-     * @param string1
-     * @param string2
-     * @param string3
-     * @param string4
-     * @return list of strings
-     */
+	/**
+	 * Get a list of strings
+	 * @param string1
+	 * @param string2
+	 * @param string3
+	 * @param string4
+	 * @return list of strings
+	 */
 	public List<String> createArrayListOfStrings(String string1, String string2, String string3, String string4) {
 		return new ArrayList<>(Arrays.asList(string1, string2, string3, string4));
 	}
 	
-    /**
-     * Get a map with string keys and int values
-     * @param key1
-     * @param key2
-     * @param key3
-     * @param value1
-     * @param value2
-     * @param value3
-     * @return array of ints
-     */
+	/**
+	 * Get a map with string keys and int values
+	 * @param key1
+	 * @param key2
+	 * @param key3
+	 * @param value1
+	 * @param value2
+	 * @param value3
+	 * @return array of ints
+	 */
 	public Map<String, Integer> createMap(String key1, String key2, String key3, int value1, int value2, int value3) {
 		return new HashMap<String, Integer>() {{
 	        put(key1, value1);
@@ -91,7 +91,7 @@ public class Collections {
     	map.remove(keyToFind);
         return map;
     }
-    
+
 	/**
 	 * Remove entries that have the given char in the key
 	 * @param map
