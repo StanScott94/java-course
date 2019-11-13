@@ -76,6 +76,12 @@ public class Main {
 		}
 	}
 
+	// ============================================================================================
+	//
+	// Configuration logic
+	//
+	// ============================================================================================
+
 	public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) throws IOException {
 
 		String[] menuItemsFromConfig = getValuesFromConfigFile("JavaBasics/configfiles/cashregister/menuItemsConfig.txt");
@@ -83,8 +89,9 @@ public class Main {
 		String[] priceFromConfig = getValuesFromConfigFile("JavaBasics/configfiles/cashregister/priceConfig.txt");
 
 		fillListWithConfiguredValues(menuItems, menuItemsFromConfig);
-		fillMapWithConfiguredValues(stock, stockFromConfig);
-		fillMapWithConfiguredValues(price, priceFromConfig);
+		fillStockWithConfiguredValues(stock, stockFromConfig);
+		fillPriceWithConfiguredValues(price, priceFromConfig);
+
 	}
 
 	public static String[] getValuesFromConfigFile(String configPath) throws IOException {
@@ -93,20 +100,25 @@ public class Main {
 		}
 	}
 
-	//using generics to prevent multiple methods doing the same thing: https://www.baeldung.com/java-generics
-	private static <T> void fillListWithConfiguredValues(List<T> List, String[] configuredValues) {
+	private static void fillListWithConfiguredValues(List<String> List, String[] configuredValues) {
+		Arrays.asList(configuredValues);
+	}
+
+	private static void fillStockWithConfiguredValues(Map<String, Integer> map, String[] configuredValues) {
 		for (String item: configuredValues) {
-			List.add((T) item);
+			String[] keyValues = item.split(":");
+			String key = keyValues[0];
+			Integer value = Integer.valueOf(keyValues[1]);
+			map.put(key, value);
 		}
 	}
 
-	//using generics to prevent multiple methods doing the same thing: https://www.baeldung.com/java-generics
-	private static <T, F> void fillMapWithConfiguredValues(Map<T, F> map, String[] configuredValues) {
+	private static void fillPriceWithConfiguredValues(Map<String, Float> map, String[] configuredValues) {
 		for (String item: configuredValues) {
 			String[] keyValues = item.split(":");
-			T key = (T) keyValues[0];
-			T value = (T) keyValues[1];
-			map.put(key, (F) value);
+			String key = keyValues[0];
+			Float value = Float.valueOf(keyValues[1]);
+			map.put(key, value);
 		}
 	}
 
