@@ -1,11 +1,9 @@
 package com.stantonscott.javabasics.cashregister;
 
+import com.sun.jdi.IntegerType;
+
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -25,7 +23,7 @@ public class Main {
 
     private static final File menuFile = new File("C:\\Projects\\java-course\\JavaBasics\\src\\com\\stantonscott\\javabasics\\cashregister\\menu.txt");
     private static final File stockFile = new File("C:\\Projects\\java-course\\JavaBasics\\src\\com\\stantonscott\\javabasics\\cashregister\\StockItems");
-    private static final File priceFile = new File("C:\\Projects\\java-course\\JavaBasics\\src\\com\\stantonscott\\javabasics\\cashregister\\StockItems");
+    private static final File priceFile = new File("C:\\Projects\\java-course\\JavaBasics\\src\\com\\stantonscott\\javabasics\\cashregister\\Price");
 
 
     // ============================================================================================
@@ -81,7 +79,7 @@ public class Main {
         }
     }
 
-    public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) {
+    public static void setupShop(List<String> menuItems, Map<String, Integer> stock,Map<String,Float> price) {
 
         // creates a list of strings to use when displaying the menu
 
@@ -89,13 +87,14 @@ public class Main {
 
         // creates a key value map to display and track stock amounts
 
-        stock = readFromFile(stock, stockFile);
+        stock =  readFromFile(stock, stockFile);
 
-        price = readFromFile(priceFile, price);
 
         // creates a key value map to display and track prices
 
+        price = readFromFile(price, priceFile);
     }
+
 
     // ============================================================================================
     //
@@ -264,7 +263,7 @@ public class Main {
         return items;
     }
 
-    public static Map<String, Integer> readFromFile(Map<String, Integer> items, File file) {
+    public static Map readFromFile(Map items, File file) {
 
         String[] data = new String[10];
         String row = null;
@@ -275,34 +274,12 @@ public class Main {
                 data = row.split(";");
             }
 
-           for (String string : data)
-           {
+            for (String string : data) {
                 String[] dataForMap = string.split(",");
-                items.put(dataForMap[0], Integer.valueOf(dataForMap[1]));
-           }
-            csvReader.close();
-
-        } catch (IOException i) {
-            System.out.println("No File Exists");
-        }
-        return items;
-    }
-
-    public static Map<String, Float> readFromFile(File file, Map<String, Float> items) {
-
-        String[] data = new String[10];
-        String row = null;
-
-        try {
-            BufferedReader csvReader = new BufferedReader(new FileReader(file));
-            while ((row = csvReader.readLine()) != null) {
-                data = row.split(";");
-            }
-
-            for (String string : data)
-            {
-                String[] dataForMap = string.split(",");
-                items.put(dataForMap[0], Float.valueOf(dataForMap[1]));
+                if (dataForMap[1].contains(".")) {
+                    items.put(dataForMap[0],  Float.parseFloat(dataForMap[1]));
+                } else
+                    items.put(dataForMap[0], Integer.parseInt(dataForMap[1]));
             }
             csvReader.close();
 
