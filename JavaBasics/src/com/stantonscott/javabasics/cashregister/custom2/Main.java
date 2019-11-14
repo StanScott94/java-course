@@ -1,4 +1,4 @@
-package com.stantonscott.javabasics.cashregister.custom;
+package com.stantonscott.javabasics.cashregister.custom2;
 
 import java.io.*;
 import java.nio.file.Files;
