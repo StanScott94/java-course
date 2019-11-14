@@ -1,10 +1,17 @@
-package com.stantonscott.javabasics.cashregister;
+package com.stantonscott.javabasics.cashregister.custom2;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.stream.Collectors;
+
+import sun.nio.ch.ThreadPool;
 
 public class Main {
 
@@ -19,27 +26,32 @@ public class Main {
 	private static final String OUT_OF_STOCK = "Item Out Of Stock";
 	private static final String BORDER = "============================================";
 	private static final String INVALID_INPUT = "Invalid Input";
-
+	private static final String ERROR_DURING_SETUP = "There was an error during setup ";
+	
 	// ============================================================================================
 	//
 	// Main program logic
 	//
 	// ============================================================================================
 
-	// main method where the program starts and ends
+	// main method where all java programs starts
 	public static void main(String[] args) {
 
-		// define global class variables
+		// define method variables
 		List<String> menuItems = new ArrayList<>();
 		Map<String, Integer> stock = new HashMap<>();
 		Map<String, Float> price = new HashMap<>();
 		Map<String, Integer> cart = new HashMap<>();
 
 		// configure menu and stock etc.
-		setupShop(menuItems, stock, price);
+		try {
+			setupShop(menuItems, stock, price);
+		} catch (IOException e) {
+			displaySetupError(e);
+		}
 
 		// create a Scanner object to get keyboard input from command line
-		// using "try with recourses" to handle errors
+		// using "try with resources" to handle errors
 		// https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
 		try (Scanner userInputScanner = new Scanner(System.in)) {
 			while (true) {
@@ -71,35 +83,57 @@ public class Main {
 		}
 	}
 
-	public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) {
+	// ============================================================================================
+	//
+	// Configuration logic
+	//
+	// ============================================================================================
 
-		//	TODO: TASK 1: configure the following collections with external configuration files 
-		//	see: helpful notes=(/cashregister/custom1/InputOutput.txt) config files=(/java-course/JavaBasics/configfiles) solution=(/cashregister/custom1/Main.java) 
-		//	TODO: TASK 2: make the first task multithreaded 
-		//	see: helpful notes=(/cashregister/custom2/MultiThreadding.txt) solution=(/cashregister/custom2/Main.java) 
+	// fill collections with values from and external configuration file and multithreding
+	public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) throws IOException {
 		
-		// creates a list of strings to use when displaying the menu
-		menuItems.add("Help Menu");
-		menuItems.add("help = Help Menu");
-		menuItems.add("stock = Stock List");
-		menuItems.add("cart = List of items in cart");
-		menuItems.add("checkout = Make your purchase");
-		menuItems.add("add <amount> <item> = Add items to cart");
-		menuItems.add("remove <amount> <item> = Add items to cart");
+		String menuPath = "JavaBasics/configfiles/cashregister/menuItemsConfig.txt";
+		String stockPath = "JavaBasics/configfiles/cashregister/stockConfig.txt";
+		String pricePath = "JavaBasics/configfiles/cashregister/priceConfig.txt";
 
-		// creates a key value map to display and track stock amounts
-		stock.put("banana", 15);
-		stock.put("milk", 2);
-		stock.put("bread", 8);
-		stock.put("cheese", 0);
-		stock.put("soda", 5);
+		ExecutorService executorService =  Executors.newFixedThreadPool(3);
 
-		// creates a key value map to display and track prices
-		price.put("banana", 1.5F);
-		price.put("milk", 2.0F);
-		price.put("bread", 1.99F);
-		price.put("cheese", 3.5F);
-		price.put("soda", 4.0F);
+		Future<String[]> menuValues = executorService.submit(new ReaderService(menuPath));
+		Future<String[]> stockValues = executorService.submit(new ReaderService(stockPath));
+		Future<String[]> priceValues = executorService.submit(new ReaderService(pricePath));
+		
+		try {
+			fillListWithConfiguredValues(menuItems, menuValues.get());
+			fillStockWithConfiguredValues(stock, stockValues.get());
+			fillPriceWithConfiguredValues(price, priceValues.get());
+		} catch (InterruptedException | ExecutionException e) {
+			displayError(e);
+		}
+
+	}
+
+	private static void fillListWithConfiguredValues(List<String> List, String[] configuredValues) {
+		List.addAll(Arrays.asList(configuredValues));
+	}
+
+	// fill a map separating the key and values by ":"
+	private static void fillStockWithConfiguredValues(Map<String, Integer> map, String[] configuredValues) {
+		for (String item: configuredValues) {
+			String[] keyValues = item.split(":");
+			String key = keyValues[0];
+			Integer value = Integer.valueOf(keyValues[1]);
+			map.put(key, value);
+		}
+	}
+
+	// fill a map separating the key and values by ":"
+	private static void fillPriceWithConfiguredValues(Map<String, Float> map, String[] configuredValues) {
+		for (String item: configuredValues) {
+			String[] keyValues = item.split(":");
+			String key = keyValues[0];
+			Float value = Float.valueOf(keyValues[1]);
+			map.put(key, value);
+		}
 	}
 
 	// ============================================================================================
@@ -109,7 +143,7 @@ public class Main {
 	// ============================================================================================
 
 	public static void addItemToCart(String userInput, Map<String, Integer> stock, Map<String, Integer> cart,
-									 Map<String, Float> price) {
+			Map<String, Float> price) {
 		// use try catch to prevent errors when working with arrays etc.
 		try {
 			// split up user input into individual words
@@ -140,7 +174,7 @@ public class Main {
 	}
 
 	public static void removeItemFromCart(String userInput, Map<String, Integer> stock, Map<String, Integer> cart,
-										  Map<String, Float> price) {
+			Map<String, Float> price) {
 		// use try catch to prevent errors when working with arrays etc.
 		try {
 			// split up user input into individual words
@@ -239,6 +273,18 @@ public class Main {
 	public static void displayError() {
 		displayBorder();
 		System.out.println(INVALID_INPUT);
+		displayBorder();
+	}
+	
+	public static void displayError(Exception e) {
+		displayBorder();
+		System.out.println(INVALID_INPUT + e.getMessage());
+		displayBorder();
+	}
+
+	public static void displaySetupError(IOException e) {
+		displayBorder();
+		System.out.println(ERROR_DURING_SETUP + e.getMessage());
 		displayBorder();
 	}
 }

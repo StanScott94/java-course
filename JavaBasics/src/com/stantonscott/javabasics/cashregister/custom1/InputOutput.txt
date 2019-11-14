@@ -1,0 +1,14 @@
+try-with-resources functionality is to replace the traditional and verbose try-catch-finally block:
+https://www.baeldung.com/java-try-with-resources
+
+java-input-stream provides a mechanism to read data from destination:
+https://www.baeldung.com/convert-file-to-input-stream
+
+java-output-stream provides a mechanism to read data from a source and write data to a destination:
+https://www.baeldung.com/java-outputstream
+
+java-buffered-reader simplifies reading text from a character input stream:
+https://www.baeldung.com/java-buffered-reader
+
+java-buffered-writer simplifies writing text to a character input stream:
+https://www.baeldung.com/java-write-to-file
