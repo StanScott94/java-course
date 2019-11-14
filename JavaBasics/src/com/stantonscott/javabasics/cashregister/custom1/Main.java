@@ -3,6 +3,7 @@ package com.stantonscott.javabasics.cashregister.custom1;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -99,6 +100,8 @@ public class Main {
 	// using "try with resources" to handle errors
 	// https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
 	public static String[] getValuesFromConfigFile(String configPath) throws IOException {
+		String logTime = new SimpleDateFormat("mm:ss.SSS").format(new Date());
+		System.out.println("retrieving values from " + configPath + " " + logTime);
 		try (BufferedReader buffer =  Files.newBufferedReader(Paths.get(configPath))) {
 			return (buffer.lines().collect(Collectors.joining("\n"))).split(",");
 		}
