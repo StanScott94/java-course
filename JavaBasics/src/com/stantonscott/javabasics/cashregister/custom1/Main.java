@@ -108,7 +108,7 @@ public class Main {
 	}
 
 	private static void fillListWithConfiguredValues(List<String> List, String[] configuredValues) {
-		Arrays.asList(configuredValues);
+		List.addAll(Arrays.asList(configuredValues));
 	}
 
 	// fill a map separating the key and values by ":"
@@ -219,6 +219,7 @@ public class Main {
 
 	public static void displayMenu(List<String> menuItems) {
 		displayBorder();
+		
 		menuItems.forEach(System.out::println);
 		displayBorder();
 	}

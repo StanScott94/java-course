@@ -1,2 +1,5 @@
+ExecutorService is a framework provided by the JDK which simplifies the execution of tasks in asynchronous mod
+https://www.baeldung.com/java-executor-service-tutorial
+
 runnable vs callable Both interfaces are designed to represent a task that can be executed by multiple threads:
 https://www.baeldung.com/java-runnable-callable

@@ -89,7 +89,7 @@ public class Main {
 	//
 	// ============================================================================================
 
-	// fill collections with values from and external configuration file
+	// fill collections with values from and external configuration file and multithreding
 	public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) throws IOException {
 		
 		String menuPath = "JavaBasics/configfiles/cashregister/menuItemsConfig.txt";
@@ -113,7 +113,7 @@ public class Main {
 	}
 
 	private static void fillListWithConfiguredValues(List<String> List, String[] configuredValues) {
-		Arrays.asList(configuredValues);
+		List.addAll(Arrays.asList(configuredValues));
 	}
 
 	// fill a map separating the key and values by ":"
