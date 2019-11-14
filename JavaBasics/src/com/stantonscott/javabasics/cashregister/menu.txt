@@ -1,0 +1,1 @@
+help = Help Menu;stock = Stock List;cart = List of items in cart;checkout = Make your purchase;add <amount> <item> = Add items to cart;remove <amount> <item> = Add items to cart;

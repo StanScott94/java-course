@@ -78,7 +78,9 @@ public class Strings {
      */
     public boolean doesFirstStringEndWithSecondString(String string1, String string2) {
 
-        return false;
+        if (string1.endsWith(string2)) {
+            return true;
+        } else return false;
     }
 
     /**
