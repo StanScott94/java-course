@@ -79,7 +79,7 @@ public class Main {
         }
     }
 
-    public static void setupShop(List<String> menuItems, Map<String, Integer> stock,Map<String,Float> price) {
+    public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) {
 
         // creates a list of strings to use when displaying the menu
 
@@ -87,7 +87,7 @@ public class Main {
 
         // creates a key value map to display and track stock amounts
 
-        stock =  readFromFile(stock, stockFile);
+        stock = readFromFile(stock, stockFile);
 
 
         // creates a key value map to display and track prices
@@ -239,8 +239,16 @@ public class Main {
 
     public static List<String> readFromFile(List<String> items, File file) {
 
-        String[] data = new String[10];
+        int counter = 0;
         String row = null;
+
+        for (String string : items) {
+            counter++;
+        }
+
+
+        String[] data = new String[10];
+
 
         try {
             BufferedReader csvReader = new BufferedReader(new FileReader(file));
@@ -265,8 +273,14 @@ public class Main {
 
     public static Map readFromFile(Map items, File file) {
 
-        String[] data = new String[10];
+        int counter = 0;
         String row = null;
+
+        for (Object entry : items.entrySet()) {
+            counter++;
+        }
+
+        String[] data = new String[counter];
 
         try {
             BufferedReader csvReader = new BufferedReader(new FileReader(file));
@@ -277,7 +291,7 @@ public class Main {
             for (String string : data) {
                 String[] dataForMap = string.split(",");
                 if (dataForMap[1].contains(".")) {
-                    items.put(dataForMap[0],  Float.parseFloat(dataForMap[1]));
+                    items.put(dataForMap[0], Float.parseFloat(dataForMap[1]));
                 } else
                     items.put(dataForMap[0], Integer.parseInt(dataForMap[1]));
             }
