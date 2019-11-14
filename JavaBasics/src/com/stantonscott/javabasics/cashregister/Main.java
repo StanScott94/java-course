@@ -18,9 +18,6 @@ public class Main {
     private static final String OUT_OF_STOCK = "Item Out Of Stock";
     private static final String BORDER = "============================================";
     private static final String INVALID_INPUT = "Invalid Input";
-
-    private static String[] menuFromFile = new String[10];
-
     private static final File menuFile = new File("C:\\Projects\\java-course\\JavaBasics\\src\\com\\stantonscott\\javabasics\\cashregister\\menu.txt");
     private static final File stockFile = new File("C:\\Projects\\java-course\\JavaBasics\\src\\com\\stantonscott\\javabasics\\cashregister\\StockItems");
     private static final File priceFile = new File("C:\\Projects\\java-course\\JavaBasics\\src\\com\\stantonscott\\javabasics\\cashregister\\Price");
