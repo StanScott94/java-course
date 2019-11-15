@@ -108,13 +108,9 @@ public class Strings {
      */
     public String replaceInstancesOfReferenceString(String reference, String string, String replacementString) {
 
-
         if (string.contains(reference))
-
             return string.replace(reference, replacementString);
-
         else
-
             return null;
     }
 }

@@ -19,9 +19,6 @@ public class Numbers {
      */
     public int addition(int firstInt, int SecondInt, int thirdInt) {
 
-
-
-
         return firstInt + SecondInt + thirdInt;
     }
 
