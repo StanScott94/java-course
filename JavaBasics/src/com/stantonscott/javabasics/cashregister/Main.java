@@ -39,7 +39,13 @@ public class Main {
         Map<String, Integer> cart = new HashMap<>();
 
         // configure menu and stock etc.
-        setupShop(menuItems, stock, price);
+        try {
+            setupShop(menuItems, stock, price);
+        }
+        catch (IOException i)
+        {
+            System.out.println("Shop can't be started. Please come later.");
+        }
 
         // create a Scanner object to get keyboard input from command line
         // using "try with recourses" to handle errors
@@ -76,22 +82,68 @@ public class Main {
         }
     }
 
-    public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) {
-
+    public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) throws IOException {
         // creates a list of strings to use when displaying the menu
-
         menuItems = readFromFile(menuItems, menuFile);
-
         // creates a key value map to display and track stock amounts
-
         stock = readFromFile(stock, stockFile);
-
-
         // creates a key value map to display and track prices
-
         price = readFromFile(price, priceFile);
     }
 
+    // ============================================================================================
+    //
+    // Reading config files from file
+    //
+    // ============================================================================================
+
+
+    public static List<String> readFromFile(List<String> items, File file) throws IOException {
+
+        int counter = 0;
+        String row = null;
+
+        for (String string : items) {
+            counter++;
+        }
+
+        String[] data = new String[counter];
+
+        BufferedReader csvReader = new BufferedReader(new FileReader(file));
+        while ((row = csvReader.readLine()) != null) {
+            data = row.split(";");
+        }
+        for (int i = 0; i < data.length; i++) {
+            items.add(data[i]);
+        }
+        return items;
+    }
+
+    public static Map readFromFile(Map items, File file) throws IOException {
+
+        int counter = 0;
+        String row = null;
+
+        for (Object entry : items.entrySet()) {
+            counter++;
+        }
+
+        String[] data = new String[counter];
+
+        BufferedReader csvReader = new BufferedReader(new FileReader(file));
+        while ((row = csvReader.readLine()) != null) {
+            data = row.split(";");
+        }
+        for (String string : data) {
+            String[] dataForMap = string.split(",");
+            if (dataForMap[1].contains(".")) {
+                items.put(dataForMap[0], Float.parseFloat(dataForMap[1]));
+            } else
+                items.put(dataForMap[0], Integer.parseInt(dataForMap[1]));
+        }
+
+        return items;
+    }
 
     // ============================================================================================
     //
@@ -234,69 +286,5 @@ public class Main {
         displayBorder();
     }
 
-    public static List<String> readFromFile(List<String> items, File file) {
 
-        int counter = 0;
-        String row = null;
-
-        for (String string : items) {
-            counter++;
-        }
-
-
-        String[] data = new String[10];
-
-
-        try {
-            BufferedReader csvReader = new BufferedReader(new FileReader(file));
-
-
-            while ((row = csvReader.readLine()) != null) {
-                data = row.split(";");
-
-            }
-
-            for (int i = 0; i < data.length; i++) {
-                items.add(data[i]);
-            }
-
-            csvReader.close();
-
-        } catch (IOException i) {
-            System.out.println("No File Exists");
-        }
-        return items;
-    }
-
-    public static Map readFromFile(Map items, File file) {
-
-        int counter = 0;
-        String row = null;
-
-        for (Object entry : items.entrySet()) {
-            counter++;
-        }
-
-        String[] data = new String[counter];
-
-        try {
-            BufferedReader csvReader = new BufferedReader(new FileReader(file));
-            while ((row = csvReader.readLine()) != null) {
-                data = row.split(";");
-            }
-
-            for (String string : data) {
-                String[] dataForMap = string.split(",");
-                if (dataForMap[1].contains(".")) {
-                    items.put(dataForMap[0], Float.parseFloat(dataForMap[1]));
-                } else
-                    items.put(dataForMap[0], Integer.parseInt(dataForMap[1]));
-            }
-            csvReader.close();
-
-        } catch (IOException i) {
-            System.out.println("No File Exists");
-        }
-        return items;
-    }
 }
