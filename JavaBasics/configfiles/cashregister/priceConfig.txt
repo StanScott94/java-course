@@ -1,0 +1,1 @@
+banana:1.5F,milk:2.0F,bread:1.99F,cheese:3.5F,soda:4.0F
