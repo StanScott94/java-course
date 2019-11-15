@@ -1,2 +1,0 @@
-runnable vs callable Both interfaces are designed to represent a task that can be executed by multiple threads:
-https://www.baeldung.com/java-runnable-callable
