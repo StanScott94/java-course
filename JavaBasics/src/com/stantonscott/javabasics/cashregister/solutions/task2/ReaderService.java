@@ -1,4 +1,4 @@
-package com.stantonscott.javabasics.cashregister.custom2;
+package com.stantonscott.javabasics.cashregister.solutions.task2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
