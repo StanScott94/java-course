@@ -9,6 +9,7 @@
 TASK 1: configure menu, price and stock with external configuration files:
 
 -   update the setupShop to populate the menu, price and stock Collections with external CommaSeparatedValue files.
+    - class to update: /javabasics/cashregister/Main.java
 -   CommaSeparatedValue files can be found here: /java-course/JavaBasics/configfiles/cashregister/
 -   see notes for useful tips: /javabasics/cashregister/tasks/InputOutput.txt
 -   solution: /javabasics/cashregister/solutions/task1/Main.java
