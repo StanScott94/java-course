@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -73,6 +74,10 @@ public class IOStreamsTest {
 		Path destination = Paths.get("JavaBasics/configfiles/InputOutputExercises/empty.txt");
         List<String> values = new ArrayList<>(Arrays.asList(string.split(" ")));
 
+        try (PrintWriter writer = new PrintWriter(destination.toString())) {
+        	writer.print("");
+        }
+        
         ioStreams.writeToFile(values, destination);
         String result;
 		try (BufferedReader buffer = Files.newBufferedReader(destination)) {
