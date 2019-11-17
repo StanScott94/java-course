@@ -1,14 +1,20 @@
 package com.stantonscott.javabasics.exercises;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -32,52 +38,47 @@ public class IOStreamsTest {
 		assertTrue(strings.contains("kick"));
 		assertTrue(strings.contains("I've"));
 		assertTrue(strings.contains("finished"));
-		assertTrue(strings.size() == 14);
+		assertTrue(strings.size() == 15);
 		assertFalse(strings.contains(","));
 	}
 	
 	@Test
 	public void testReadInputStream() throws IOException {
-		byte[] data = "Will,you,watch,your,ruddy,language,my,ears,are,not,a,toilet".getBytes();
-		InputStream inputStream = new ByteArrayInputStream(data);
+		byte[] stringBytes = "Will,you,watch,your,ruddy,language,my,ears,are,not,a,toilet".getBytes();
+		InputStream inputStream = new ByteArrayInputStream(stringBytes);
 		List<String> strings = ioStreams.readInputStream(inputStream);
 		
 		assertTrue(strings.contains("ruddy"));
 		assertTrue(strings.contains("ears"));
 		assertTrue(strings.contains("toilet"));
-		assertTrue(strings.size() == 11);
+		assertTrue(strings.size() == 12);
 		assertFalse(strings.contains(","));
 	}
 	
-	/**
-	 * read comma separated values from a file
-	 * @param destination of file
-	 * @return String array of values from stream
-	 * @throws IOException
-	 */
-	public String[] testReadFromFile(Path destination) throws IOException {
-		//code goes here
-		return null;
+	@Test
+	public void testReadFromFile() throws IOException {
+		Path path = Paths.get("JavaBasics/configfiles/InputOutputExercises/csv1.txt");
+		String[] strings = ioStreams.readFromFile(path);
+		
+		assertEquals(strings[2], "type");
+		assertEquals(strings[5], "Google");
+		assertEquals(strings[10], "internet");
+		assertTrue(strings.length == 11);
 	}
 	
-	/**
-	 * write the provided values to an output stream separated with a comma
-	 *
-	 * @param outputStream
-	 * @param values
-	 * @throws IOException
-	 */	
-	public void testWrite(OutputStream outputStream, List<String> values) throws IOException {
+	@Test
+	public void testWriteToFile() throws IOException {
+		String string = "The men involved are young angry and almost all of them work with computers";
+		String expected = "The,men,involved,are,young,angry,and,almost,all,of,them,work,with,computers,";
+		Path destination = Paths.get("JavaBasics/configfiles/InputOutputExercises/empty.txt");
+        List<String> values = new ArrayList<>(Arrays.asList(string.split(" ")));
 
-	}
-	
-	/**
-	 * write strings as comma separated values to a file
-	 * @param values to write to file
-	 * @param destination of file
-	 */
-	public void testWriteToFile(List<String> values, Path destination) {
-		//code goes here
-		return;
+        ioStreams.writeToFile(values, destination);
+        String result;
+		try (BufferedReader buffer = Files.newBufferedReader(destination)) {
+			result = (buffer.lines().collect(Collectors.joining("\n")));
+		}
+
+		assertEquals(expected, result);
 	}
 }
