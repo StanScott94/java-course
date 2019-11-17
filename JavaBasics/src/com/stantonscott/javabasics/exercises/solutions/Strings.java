@@ -4,7 +4,7 @@ package com.stantonscott.javabasics.exercises.solutions;
  * @author stantonscott
  * @version 1.0
  *
- * <p>Creation Date: 29.10.19</p>
+ * <p>Creation Date: 28.10.19</p>
  * <p>Project Name: JavaBasics</p>
  */
 public class Strings {

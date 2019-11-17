@@ -5,6 +5,13 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.List;
 
+/**
+ * @author stantonscott
+ * @version 1.0
+ * 
+ * <p>Creation Date: 01.11.19</p>
+ * <p>Project Name: JavaBasics</p>
+ */
 public class IOStreams {
 
 	/**

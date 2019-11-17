@@ -1,16 +1,17 @@
 package com.stantonscott.javabasics.exercises;
 
-import org.junit.Test;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author stantonscott
  * @version 1.0
  *
- * <p>Creation Date: 29.10.19</p>
+ * <p>Creation Date: 28.10.19</p>
  * <p>Project Name: JavaBasics</p>
  */
 public class StringsTest {

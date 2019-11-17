@@ -11,6 +11,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author stantonscott
+ * @version 1.0
+ * 
+ * <p>Creation Date: 01.11.19</p>
+ * <p>Project Name: JavaBasics</p>
+ */
 public class IOStreams {
 
 	/**

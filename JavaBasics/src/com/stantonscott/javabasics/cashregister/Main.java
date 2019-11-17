@@ -6,6 +6,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+/**
+ * @author stantonscott
+ * @version 1.0
+ *
+ * <p>Creation Date: 07.11.19</p>
+ * <p>Project Name: JavaBasics</p>
+ */
 public class Main {
 
 	// define constants to allow clean code
@@ -104,7 +111,7 @@ public class Main {
 	// ============================================================================================
 
 	public static void addItemToCart(String userInput, Map<String, Integer> stock, Map<String, Integer> cart,
-									 Map<String, Float> price) {
+			Map<String, Float> price) {
 		// use try catch to prevent errors when working with arrays etc.
 		try {
 			// split up user input into individual words
@@ -135,7 +142,7 @@ public class Main {
 	}
 
 	public static void removeItemFromCart(String userInput, Map<String, Integer> stock, Map<String, Integer> cart,
-										  Map<String, Float> price) {
+			Map<String, Float> price) {
 		// use try catch to prevent errors when working with arrays etc.
 		try {
 			// split up user input into individual words

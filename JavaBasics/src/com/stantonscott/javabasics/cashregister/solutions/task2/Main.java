@@ -1,12 +1,24 @@
 package com.stantonscott.javabasics.cashregister.solutions.task2;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+/**
+ * @author stantonscott
+ * @version 1.0
+ *
+ * <p>Creation Date: 11.11.19</p>
+ * <p>Project Name: JavaBasics</p>
+ */
 public class Main {
 
 	// define constants to allow clean code
@@ -21,7 +33,7 @@ public class Main {
 	private static final String BORDER = "============================================";
 	private static final String INVALID_INPUT = "Invalid Input";
 	private static final String ERROR_DURING_SETUP = "There was an error during setup ";
-	
+
 	// ============================================================================================
 	//
 	// Main program logic
@@ -79,21 +91,22 @@ public class Main {
 	//
 	// ============================================================================================
 
-	// fill collections with values from and external configuration file and multithreding
+	// fill collections with values from and external configuration file and
+	// multithreding
 	public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) {
-		
+
 		String menuPath = "JavaBasics/configfiles/cashregister/menuItemsConfig.txt";
 		String stockPath = "JavaBasics/configfiles/cashregister/stockConfig.txt";
 		String pricePath = "JavaBasics/configfiles/cashregister/priceConfig.txt";
 
-		ExecutorService executorService =  Executors.newFixedThreadPool(3);
+		ExecutorService executorService = Executors.newFixedThreadPool(3);
 
 		Future<String[]> menuValues = executorService.submit(new ReaderService(menuPath));
 		Future<String[]> stockValues = executorService.submit(new ReaderService(stockPath));
 		Future<String[]> priceValues = executorService.submit(new ReaderService(pricePath));
-		
+
 		executorService.shutdown();
-		
+
 		try {
 			fillListWithConfiguredValues(menuItems, menuValues.get());
 			fillStockWithConfiguredValues(stock, stockValues.get());
@@ -110,7 +123,7 @@ public class Main {
 
 	// fill a map separating the key and values by ":"
 	private static void fillStockWithConfiguredValues(Map<String, Integer> map, String[] configuredValues) {
-		for (String item: configuredValues) {
+		for (String item : configuredValues) {
 			String[] keyValues = item.split(":");
 			String key = keyValues[0];
 			Integer value = Integer.valueOf(keyValues[1]);
@@ -120,7 +133,7 @@ public class Main {
 
 	// fill a map separating the key and values by ":"
 	private static void fillPriceWithConfiguredValues(Map<String, Float> map, String[] configuredValues) {
-		for (String item: configuredValues) {
+		for (String item : configuredValues) {
 			String[] keyValues = item.split(":");
 			String key = keyValues[0];
 			Float value = Float.valueOf(keyValues[1]);
@@ -267,7 +280,7 @@ public class Main {
 		System.out.println(INVALID_INPUT);
 		displayBorder();
 	}
-	
+
 	public static void displayError(Exception e) {
 		displayBorder();
 		System.out.println(INVALID_INPUT + e.getMessage());
