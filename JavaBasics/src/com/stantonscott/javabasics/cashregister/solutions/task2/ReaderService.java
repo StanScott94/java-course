@@ -1,4 +1,4 @@
-package com.stantonscott.javabasics.cashregister.custom2;
+package com.stantonscott.javabasics.cashregister.solutions.task2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,7 +17,7 @@ public class ReaderService implements Callable<String[]> {
 		this.filePath = filePath;
 	}
 
-	public String[] call() throws Exception {
+	public String[] call() throws IOException {
 		return getCommaSeparatedValuesFromConfigFile();
 	}
 

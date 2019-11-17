@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
+
 /**
  * @author stantonscott
  * @version 1.0
@@ -13,7 +15,12 @@ import static org.junit.Assert.*;
  */
 public class StringsTest {
 
-    private Strings strings = new Strings();
+	private Strings strings;
+	
+	@Before
+	public void setupTests() {
+		strings = new Strings();
+	}
 
     @Test
     public void testGetLongestString() {

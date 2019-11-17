@@ -1,11 +1,11 @@
-package com.stantonscott.javabasics.cashregister.custom1;
+package com.stantonscott.javabasics.cashregister.solutions.task2;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class Main {
 
@@ -21,7 +21,7 @@ public class Main {
 	private static final String BORDER = "============================================";
 	private static final String INVALID_INPUT = "Invalid Input";
 	private static final String ERROR_DURING_SETUP = "There was an error during setup ";
-
+	
 	// ============================================================================================
 	//
 	// Main program logic
@@ -38,11 +38,7 @@ public class Main {
 		Map<String, Integer> cart = new HashMap<>();
 
 		// configure menu and stock etc.
-		try {
-			setupShop(menuItems, stock, price);
-		} catch (IOException e) {
-			displaySetupError(e);
-		}
+		setupShop(menuItems, stock, price);
 
 		// create a Scanner object to get keyboard input from command line
 		// using "try with resources" to handle errors
@@ -83,28 +79,29 @@ public class Main {
 	//
 	// ============================================================================================
 
-	// fill collections with values from and external configuration file
-	public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) throws IOException {
+	// fill collections with values from and external configuration file and multithreding
+	public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) {
+		
+		String menuPath = "JavaBasics/configfiles/cashregister/menuItemsConfig.txt";
+		String stockPath = "JavaBasics/configfiles/cashregister/stockConfig.txt";
+		String pricePath = "JavaBasics/configfiles/cashregister/priceConfig.txt";
 
-		String[] menuItemsFromConfig = getValuesFromConfigFile("JavaBasics/configfiles/cashregister/menuItemsConfig.txt");
-		String[] stockFromConfig = getValuesFromConfigFile("JavaBasics/configfiles/cashregister/stockConfig.txt");
-		String[] priceFromConfig = getValuesFromConfigFile("JavaBasics/configfiles/cashregister/priceConfig.txt");
+		ExecutorService executorService =  Executors.newFixedThreadPool(3);
 
-		fillListWithConfiguredValues(menuItems, menuItemsFromConfig);
-		fillStockWithConfiguredValues(stock, stockFromConfig);
-		fillPriceWithConfiguredValues(price, priceFromConfig);
-
-	}
-
-	// open file, read file into a string and separate the values by ","
-	// using "try with resources" to handle errors
-	// https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
-	public static String[] getValuesFromConfigFile(String configPath) throws IOException {
-		String logTime = new SimpleDateFormat("mm:ss.SSS").format(new Date());
-		System.out.println("retrieving values from " + configPath + " " + logTime);
-		try (BufferedReader buffer =  Files.newBufferedReader(Paths.get(configPath))) {
-			return (buffer.lines().collect(Collectors.joining("\n"))).split(",");
+		Future<String[]> menuValues = executorService.submit(new ReaderService(menuPath));
+		Future<String[]> stockValues = executorService.submit(new ReaderService(stockPath));
+		Future<String[]> priceValues = executorService.submit(new ReaderService(pricePath));
+		
+		executorService.shutdown();
+		
+		try {
+			fillListWithConfiguredValues(menuItems, menuValues.get());
+			fillStockWithConfiguredValues(stock, stockValues.get());
+			fillPriceWithConfiguredValues(price, priceValues.get());
+		} catch (InterruptedException | ExecutionException e) {
+			displayError(e);
 		}
+
 	}
 
 	private static void fillListWithConfiguredValues(List<String> List, String[] configuredValues) {
@@ -219,7 +216,6 @@ public class Main {
 
 	public static void displayMenu(List<String> menuItems) {
 		displayBorder();
-		
 		menuItems.forEach(System.out::println);
 		displayBorder();
 	}
@@ -269,6 +265,12 @@ public class Main {
 	public static void displayError() {
 		displayBorder();
 		System.out.println(INVALID_INPUT);
+		displayBorder();
+	}
+	
+	public static void displayError(Exception e) {
+		displayBorder();
+		System.out.println(INVALID_INPUT + e.getMessage());
 		displayBorder();
 	}
 

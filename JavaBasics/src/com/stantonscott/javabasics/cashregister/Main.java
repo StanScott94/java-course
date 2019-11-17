@@ -73,11 +73,6 @@ public class Main {
 
 	public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) {
 
-		//	TODO: TASK 1: configure the following collections with external configuration files 
-		//	see: helpful notes=(/cashregister/custom1/InputOutput.txt) config files=(/java-course/JavaBasics/configfiles) solution=(/cashregister/custom1/Main.java) 
-		//	TODO: TASK 2: make the first task multithreaded 
-		//	see: helpful notes=(/cashregister/custom2/MultiThreadding.txt) solution=(/cashregister/custom2/Main.java) 
-		
 		// creates a list of strings to use when displaying the menu
 		menuItems.add("Help Menu");
 		menuItems.add("help = Help Menu");
