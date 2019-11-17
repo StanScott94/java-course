@@ -61,6 +61,5 @@ public class IOStreams {
 	 */
 	public void writeToFile(List<String> values, Path destination) throws IOException {
 		// code goes here
-		return null;
 	}
 }
