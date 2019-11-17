@@ -20,6 +20,7 @@ public class NumbersTest {
 	public void setupTests() {
 		numbers = new Numbers();
 	}
+	
 	@Test
 	public void addition() {
 		int expecting10 = numbers.addition(5, 5, 0);

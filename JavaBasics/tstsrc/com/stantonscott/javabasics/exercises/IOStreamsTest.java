@@ -20,19 +20,19 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class IOStreamsTest {
-	
+
 	private IOStreams ioStreams;
 
 	@Before
-	public void prepareTest() {
+	public void setupTests() {
 		ioStreams = new IOStreams();
 	}
 
 	@Test
 	public void testSplitCommaSepareatedValues() {
-		String commaSepareatedValues =  "I,came,here,to,drink,milk,and,kick,ass,and,I've,just,finished,my,milk";
+		String commaSepareatedValues = "I,came,here,to,drink,milk,and,kick,ass,and,I've,just,finished,my,milk";
 		List<String> strings = ioStreams.splitCommaSepareatedValues(commaSepareatedValues);
-		
+
 		assertTrue(strings.contains("I"));
 		assertTrue(strings.contains("milk"));
 		assertTrue(strings.contains("kick"));
@@ -41,13 +41,13 @@ public class IOStreamsTest {
 		assertTrue(strings.size() == 15);
 		assertFalse(strings.contains(","));
 	}
-	
+
 	@Test
 	public void testReadInputStream() throws IOException {
 		byte[] stringBytes = "Will,you,watch,your,ruddy,language,my,ears,are,not,a,toilet".getBytes();
 		InputStream inputStream = new ByteArrayInputStream(stringBytes);
 		List<String> strings = ioStreams.readInputStream(inputStream);
-		
+
 		assertTrue(strings.contains("ruddy"));
 		assertTrue(strings.contains("ears"));
 		assertTrue(strings.contains("toilet"));
