@@ -38,11 +38,7 @@ public class Main {
 		Map<String, Integer> cart = new HashMap<>();
 
 		// configure menu and stock etc.
-		try {
-			setupShop(menuItems, stock, price);
-		} catch (IOException e) {
-			displaySetupError(e);
-		}
+		setupShop(menuItems, stock, price);
 
 		// create a Scanner object to get keyboard input from command line
 		// using "try with resources" to handle errors
@@ -84,7 +80,7 @@ public class Main {
 	// ============================================================================================
 
 	// fill collections with values from and external configuration file and multithreding
-	public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) throws IOException {
+	public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) {
 		
 		String menuPath = "JavaBasics/configfiles/cashregister/menuItemsConfig.txt";
 		String stockPath = "JavaBasics/configfiles/cashregister/stockConfig.txt";
@@ -95,6 +91,8 @@ public class Main {
 		Future<String[]> menuValues = executorService.submit(new ReaderService(menuPath));
 		Future<String[]> stockValues = executorService.submit(new ReaderService(stockPath));
 		Future<String[]> priceValues = executorService.submit(new ReaderService(pricePath));
+		
+		executorService.shutdown();
 		
 		try {
 			fillListWithConfiguredValues(menuItems, menuValues.get());

@@ -17,7 +17,7 @@ public class ReaderService implements Callable<String[]> {
 		this.filePath = filePath;
 	}
 
-	public String[] call() throws Exception {
+	public String[] call() throws IOException {
 		return getCommaSeparatedValuesFromConfigFile();
 	}
 
