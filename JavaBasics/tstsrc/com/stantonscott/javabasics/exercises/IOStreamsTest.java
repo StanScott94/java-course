@@ -24,7 +24,7 @@ public class IOStreamsTest {
 	private IOStreams ioStreams;
 
 	@Before
-	public void prepareTest() {
+	public void setupTests() {
 		ioStreams = new IOStreams();
 	}
 
