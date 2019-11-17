@@ -1,10 +1,22 @@
 package com.stantonscott.javabasics.exercises;
-
+import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
+/**
+ * @author stantonscott
+ * @version 1.0
+ * 
+ * <p>Creation Date: 01.11.19</p>
+ * <p>Project Name: JavaBasics</p>
+ */
 public class IOStreams {
 
 	/**
@@ -14,8 +26,7 @@ public class IOStreams {
 	 * @return List of strings
 	 */
 	public List<String> splitCommaSepareatedValues(String commaSepareatedValues) {
-		// code goes here
-		return null;
+		return Arrays.asList(commaSepareatedValues.split(","));
 	}
 
 	/**
@@ -26,8 +37,10 @@ public class IOStreams {
 	 * @throws IOException
 	 */
 	public List<String> readInputStream(InputStream inputStream) throws IOException {
-		// code goes here
-		return null;
+		int sizeOfStream = inputStream.available();
+		byte[] bytes = new byte[sizeOfStream];
+		inputStream.read(bytes, 0, sizeOfStream);
+		return Arrays.asList(new String(bytes, StandardCharsets.UTF_8).split(","));
 	}
 
 	/**
@@ -39,8 +52,9 @@ public class IOStreams {
 	 * @throws IOException
 	 */
 	public String[] readFromFile(Path destination) throws IOException {
-		// code goes here
-		return null;
+		try (BufferedReader buffer = Files.newBufferedReader(destination)) {
+			return (buffer.lines().collect(Collectors.joining("\n"))).split(",");
+		}
 	}
 
 	/**
@@ -52,6 +66,10 @@ public class IOStreams {
 	 *            of file
 	 */
 	public void writeToFile(List<String> values, Path destination) throws IOException {
-		// code goes here
+		try (FileWriter writer = new FileWriter(destination.toString())) {
+			for (String value : values) {
+				writer.write(value.trim() + ",");
+			}
+		};
 	}
 }

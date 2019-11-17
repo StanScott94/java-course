@@ -20,9 +20,16 @@ import java.util.stream.Collectors;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * @author stantonscott
+ * @version 1.0
+ * 
+ * <p>Creation Date: 01.11.19</p>
+ * <p>Project Name: JavaBasics</p>
+ */
 public class IOStreamsTest {
 
-	private IOStreams ioStreams;
+	IOStreams ioStreams;
 
 	@Before
 	public void setupTests() {

@@ -17,8 +17,7 @@ public class Numbers {
      * @return sum of all parameters
      */
 	public int addition(int firstInt, int SecondInt, int thirdInt) {
-		//code goes here
-		return 0;
+		return firstInt + SecondInt + thirdInt;
 	}
 	
     /**
