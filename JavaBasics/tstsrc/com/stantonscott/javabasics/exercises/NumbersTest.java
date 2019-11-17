@@ -3,6 +3,8 @@ package com.stantonscott.javabasics.exercises;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import org.junit.Before;
+
 /**
  * @author stantonscott
  * @version 1.0
@@ -11,9 +13,13 @@ import static org.junit.Assert.*;
  * <p>Project Name: JavaBasics</p>
  */
 public class NumbersTest {
-	
-	Numbers numbers = new Numbers();
 
+	private Numbers numbers;
+	
+	@Before
+	public void setupTests() {
+		numbers = new Numbers();
+	}
 	@Test
 	public void addition() {
 		int expecting10 = numbers.addition(5, 5, 0);
