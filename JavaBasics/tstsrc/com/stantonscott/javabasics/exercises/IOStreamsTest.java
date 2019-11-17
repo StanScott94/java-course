@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -54,27 +55,31 @@ public class IOStreamsTest {
 		assertTrue(strings.size() == 12);
 		assertFalse(strings.contains(","));
 	}
-
+	
 	@Test
 	public void testReadFromFile() throws IOException {
 		Path path = Paths.get("JavaBasics/configfiles/InputOutputExercises/csv1.txt");
 		String[] strings = ioStreams.readFromFile(path);
-
+		
 		assertEquals(strings[2], "type");
 		assertEquals(strings[5], "Google");
 		assertEquals(strings[10], "internet");
 		assertTrue(strings.length == 11);
 	}
-
+	
 	@Test
 	public void testWriteToFile() throws IOException {
 		String string = "The men involved are young angry and almost all of them work with computers";
 		String expected = "The,men,involved,are,young,angry,and,almost,all,of,them,work,with,computers,";
 		Path destination = Paths.get("JavaBasics/configfiles/InputOutputExercises/empty.txt");
-		List<String> values = new ArrayList<>(Arrays.asList(string.split(" ")));
+        List<String> values = new ArrayList<>(Arrays.asList(string.split(" ")));
 
-		ioStreams.writeToFile(values, destination);
-		String result;
+        try (PrintWriter writer = new PrintWriter(destination.toString())) {
+        	writer.print("");
+        }
+        
+        ioStreams.writeToFile(values, destination);
+        String result;
 		try (BufferedReader buffer = Files.newBufferedReader(destination)) {
 			result = (buffer.lines().collect(Collectors.joining("\n")));
 		}
