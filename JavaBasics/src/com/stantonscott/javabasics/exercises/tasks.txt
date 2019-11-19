@@ -1,0 +1,16 @@
+========================================================================================================================
+========================================================================================================================
+                                      Please complete these tasks
+========================================================================================================================
+========================================================================================================================
+
+
+========================================================================================================================
+TASK 1: complete the methods for these basic java exercises:
+
+- each of these exercises has a corresponding test that can be run to check if your solution is correct
+- the test supplies the values to the parametes of the methods and asserts that the values returned are correct
+- the tests are found under java-course\JavaBasics\tstsrc\com\stantonscott\javabasics\exercises
+- you can run the tests as Junit test to check your code
+- the solutions to the exercises can be found under java-course\JavaBasics\src\com\stantonscott\javabasics\exercises\solutions
+========================================================================================================================

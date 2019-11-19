@@ -1,0 +1,74 @@
+========================================================================================================================
+========================================================================================================================
+                                      Please complete these tasks
+========================================================================================================================
+========================================================================================================================
+
+
+========================================================================================================================
+TASK 1: create a simple program that will be compiled and run via the command line:
+
+- creare a java class called Main.java under java-course\JavaBasics\src\com\stantonscott\javabasics\compilation
+- open the file with a simple text editor
+- first define the package on the first line "package com.stantonscott.javabasics.compilation"
+- two lines below that define the class:
+
+public class Main {
+
+}
+
+- create the main method, the main method is the entry point of every java program, the syntax of the main method
+  is ALWAYS the same " public static void main(String[] args) { //code goes here } " the name of the argument "args"
+  can be changed for example it can be changed from "args" to "arguments"
+  
+public static void main(String[] args) { 
+
+}
+
+- add code to check if there are arguments and print the first one to the console, print a warning if there are none
+- what your final Main class should look like:
+
+
+package com.stantonscott.javabasics.compilation.solutions;
+
+public class Main {
+
+	private static final String WARNIGN = "there were no arguments entered";
+	
+	public static void main(String[] args) { 
+
+		if (args.length > 0) {
+			System.out.print(args[0]);
+		} else {
+			System.out.print(WARNIGN);
+		}
+	}
+}
+
+- compile the program: this will transform the java syntax (human readable code) in your Main.java class into Main.class
+  which contains byte code which can run on the java virtual machine on any device that has java installed
+- in your command line navigate to java-course\JavaBasics\src\com\stantonscott\javabasics\compilation
+  and enter the following command 
+  
+javac Main.java
+
+- check that the Main.class file has been created in java-course\JavaBasics\src\com\stantonscott\javabasics\compilation
+- now in the command line navigate to the top on the package defined in your class
+
+you should be here:
+java-course\JavaBasics\src\
+
+
+- run the class with the full classpath defined
+
+java -classpath . com.stantonscott.javabasics.compilation.Main
+
+- you should see a message "there were no arguments entered", this is printed because the main method ran with no 
+  arguments. Run the program again defining an argument for the program to print
+  
+java -classpath . com.stantonscott.javabasics.compilation.Main I_am_the_first_argument
+
+- you should see a message "I_am_the_first_argument" because there are no spaces separating the words it does not get 
+  split into multiple arguments, if you enter  "I am the first argument" you will only see "I" as the method will split 
+  the arguments up by the spaces between the words
+========================================================================================================================
