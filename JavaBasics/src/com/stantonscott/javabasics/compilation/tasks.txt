@@ -8,7 +8,9 @@
 ========================================================================================================================
 TASK 1: create a simple program that will be compiled and run via the command line:
 
-- creare a java class called Main.java under java-course\JavaBasics\src\com\stantonscott\javabasics\compilation
+*** DO NOT USE ECLIPSE, INTELLIJ OR ANY OTHER IDE. ONLY A SIMPLE TEXT EDITOR (eg. notepad) AND COMMAND LINE ***
+
+- create a file called Main.java (java class) under java-course\JavaBasics\src\com\stantonscott\javabasics\compilation
 - open the file with a simple text editor
 - first define the package on the first line "package com.stantonscott.javabasics.compilation"
 - two lines below that define the class:
@@ -71,4 +73,12 @@ java -classpath . com.stantonscott.javabasics.compilation.Main I_am_the_first_ar
 - you should see a message "I_am_the_first_argument" because there are no spaces separating the words it does not get 
   split into multiple arguments, if you enter  "I am the first argument" you will only see "I" as the method will split 
   the arguments up by the spaces between the words
+  
+- adjust the code in the Main.java file to print the first three arguments.
+- repeat the steps to compile and run the program but this time with more arguments
+
+- adjust the code to add three numbers (the first three arguments) given to the program and test it
+- the following should print "100"
+
+java -classpath . com.stantonscott.javabasics.compilation.Main 50 25 25
 ========================================================================================================================
