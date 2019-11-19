@@ -84,7 +84,7 @@ public class StringsTest {
         String secondString = "Alphabetical";
         String result = strings.getFirstAlphabeticalString(firstString, secondString);
 
-        assertEquals(secondString,result);
+        assertEquals(secondString, result);
     }
 
     @Test
@@ -94,6 +94,6 @@ public class StringsTest {
         String replacementString = "not";
         String result = strings.replaceInstancesOfReferenceString(reference, string, replacementString);
 
-        assertEquals("the earth is not flat",result);
+        assertEquals("the earth is not flat", result);
     }
 }

@@ -101,8 +101,7 @@ public class Main {
 	public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price)
 			throws IOException {
 
-		String[] menuItemsFromConfig = getValuesFromConfigFile(
-				"JavaBasics/configfiles/cashregister/menuItemsConfig.txt");
+		String[] menuItemsFromConfig = getValuesFromConfigFile("JavaBasics/configfiles/cashregister/menuItemsConfig.txt");
 		String[] stockFromConfig = getValuesFromConfigFile("JavaBasics/configfiles/cashregister/stockConfig.txt");
 		String[] priceFromConfig = getValuesFromConfigFile("JavaBasics/configfiles/cashregister/priceConfig.txt");
 
