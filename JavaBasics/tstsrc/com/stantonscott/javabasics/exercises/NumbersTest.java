@@ -29,15 +29,9 @@ public class NumbersTest {
 		int expectingNegative11 = numbers.addition(16, -32, 5);
 		int expecting88 = numbers.addition(62, 19, 7);
 
-<<<<<<< HEAD
-		assertEquals(expecting10, 10);
-		assertEquals(expectingNegative11, -11);
-		assertEquals(expecting88, 88);
-=======
 		assertEquals(10, expecting10);
 		assertEquals(-11, expectingNegative11);
 		assertEquals(88, expecting88);
->>>>>>> e5c95ebd41fa496a04bf4af6b2edf6e2f58bff86
 	}
 
 	@Test
