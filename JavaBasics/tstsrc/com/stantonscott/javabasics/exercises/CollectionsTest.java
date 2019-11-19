@@ -34,10 +34,10 @@ public class CollectionsTest {
 		String string4 = "JPA";
 		String[] result = collections.createStringArray(string1, string2, string3, string4);
 		
-		assertEquals(result[0], string1);
-		assertEquals(result[1], string2);
-		assertEquals(result[2], string3);
-		assertEquals(result[3], string4);
+		assertEquals(string1, result[0]);
+		assertEquals(string2, result[1]);
+		assertEquals(string3, result[2]);
+		assertEquals(string4, result[3]);
 	}
 	
 	@Test
@@ -48,10 +48,10 @@ public class CollectionsTest {
 		int int4 = 911;
 		int[] result = collections.createIntArray(int1, int2, int3, int4);
 		
-		assertEquals(result[0], int1);
-		assertEquals(result[1], int2);
-		assertEquals(result[2], int3);
-		assertEquals(result[3], int4);
+		assertEquals(int1, result[0]);
+		assertEquals(int2, result[1]);
+		assertEquals(int3, result[2]);
+		assertEquals(int4, result[3]);
 	}
 	
 	@Test
@@ -62,10 +62,10 @@ public class CollectionsTest {
 		String string4 = "JPA";
 		List<String> result = collections.createArrayListOfStrings(string1, string2, string3, string4);
 	
-		assertEquals(result.get(0), string1);
-		assertEquals(result.get(1), string2);
-		assertEquals(result.get(2), string3);
-		assertEquals(result.get(3), string4);
+		assertEquals(string1, result.get(0));
+		assertEquals(string2, result.get(1));
+		assertEquals(string3, result.get(2));
+		assertEquals(string4, result.get(3));
 	}
 	
 	@Test
@@ -78,9 +78,9 @@ public class CollectionsTest {
 		Integer value3 = 999;
 		Map<String, Integer> result = collections.createMap(key1, key2, key3, value1, value2, value3);
 	
-		assertEquals(result.get(key1), value1);
-		assertEquals(result.get(key2), value2);
-		assertEquals(result.get(key3), value3);
+		assertEquals(value1, result.get(key1));
+		assertEquals(value2, result.get(key2));
+		assertEquals(value3, result.get(key3));
 	}
 	
 	@Test
@@ -100,9 +100,9 @@ public class CollectionsTest {
 		
 		Map<String, Integer> result = collections.findAndReplace(map, key3, newValue);
 	
-		assertEquals(result.get(key1), value1);
-		assertEquals(result.get(key2), value2);
-		assertEquals(result.get(key3), newValue);
+		assertEquals(value1, result.get(key1));
+		assertEquals(value2, result.get(key2));
+		assertEquals(newValue, result.get(key3));
 	}
 	
 	@Test
@@ -162,8 +162,8 @@ public class CollectionsTest {
 		
 		Map<String, Integer> result = collections.findKeyAndReplaceValue(map, stringToFind, newValue);
 		
-		assertEquals(result.get(key1), value1);
-		assertEquals(result.get(key2), value2);
-		assertEquals(result.get(key3), newValue);
+		assertEquals(value1, result.get(key1));
+		assertEquals(value2, result.get(key2));
+		assertEquals(newValue, result.get(key3));
 	}
 }

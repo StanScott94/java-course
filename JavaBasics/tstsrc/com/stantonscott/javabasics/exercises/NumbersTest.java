@@ -26,12 +26,12 @@ public class NumbersTest {
 	@Test
 	public void addition() {
 		int expecting10 = numbers.addition(5, 5, 0);
-		int expecting11 = numbers.addition(16, -32, 5);
+		int expectingNegative11 = numbers.addition(16, -32, 5);
 		int expecting88 = numbers.addition(62, 19, 7);
 
-		assertEquals(expecting10, 10);
-		assertEquals(expecting11, 11);
-		assertEquals(expecting88, 88);
+		assertEquals(10, expecting10);
+		assertEquals(-11, expectingNegative11);
+		assertEquals(88, expecting88);
 	}
 
 	@Test
@@ -40,9 +40,9 @@ public class NumbersTest {
 		int expecting21 = numbers.addOnlyPositiveNumbers(16, -32, 5);
 		int expecting62 = numbers.addOnlyPositiveNumbers(62, -19, -7);
 
-		assertEquals(expecting10, 10);
-		assertEquals(expecting21, 21);
-		assertEquals(expecting62, 62);
+		assertEquals(10, expecting10);
+		assertEquals(21, expecting21);
+		assertEquals(62, expecting62);
 	}
 
 	@Test
@@ -51,9 +51,9 @@ public class NumbersTest {
 		int expecting21 = numbers.subtraction(28, 7);
 		int expecting10 = numbers.subtraction(5, -5);
 
-		assertEquals(expecting0, 0);
-		assertEquals(expecting21, 21);
-		assertEquals(expecting10, 10);
+		assertEquals(0, expecting0);
+		assertEquals(21, expecting21);
+		assertEquals(10, expecting10);
 
 	}
 
@@ -63,9 +63,9 @@ public class NumbersTest {
 		int expecting0 = numbers.multiplication(28, 0);
 		int expectingNegative25 = numbers.multiplication(5, -5);
 
-		assertEquals(expecting25, 25);
-		assertEquals(expecting0, 0);
-		assertEquals(expectingNegative25, -25);
+		assertEquals(25, expecting25);
+		assertEquals(0, expecting0);
+		assertEquals(-25, expectingNegative25);
 	}
 
 	@Test
@@ -74,9 +74,9 @@ public class NumbersTest {
 		int expectingNegative20 = numbers.division(100, -5);
 		int expecting10 = numbers.division(10, 1);
 
-		assertEquals(expecting50, 50);
-		assertEquals(expectingNegative20, -20);
-		assertEquals(expecting10, 10);
+		assertEquals(50, expecting50);
+		assertEquals(-20, expectingNegative20);
+		assertEquals(10, expecting10);
 	}
 
 	@Test
