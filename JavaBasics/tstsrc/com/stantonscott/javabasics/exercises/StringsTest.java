@@ -84,7 +84,7 @@ public class StringsTest {
         String secondString = "Alphabetical";
         String result = strings.getFirstAlphabeticalString(firstString, secondString);
 
-        assertEquals(secondString,result);
+        assertEquals(secondString, result);
     }
 
     @Test

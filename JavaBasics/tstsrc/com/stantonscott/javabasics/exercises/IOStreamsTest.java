@@ -67,10 +67,10 @@ public class IOStreamsTest {
 	public void testReadFromFile() throws IOException {
 		Path path = Paths.get("JavaBasics/configfiles/InputOutputExercises/csv1.txt");
 		String[] strings = ioStreams.readFromFile(path);
-		
-		assertEquals(strings[2], "type");
-		assertEquals(strings[5], "Google");
-		assertEquals(strings[10], "internet");
+
+		assertEquals("type", strings[2]);
+		assertEquals("Google", strings[5]);
+		assertEquals("internet", strings[10]);
 		assertTrue(strings.length == 11);
 	}
 	
