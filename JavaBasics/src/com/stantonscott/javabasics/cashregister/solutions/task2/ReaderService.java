@@ -9,6 +9,13 @@ import java.util.Date;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
+/**
+ * @author stantonscott
+ * @version 1.0
+ *
+ * <p>Creation Date: 11.11.19</p>
+ * <p>Project Name: JavaBasics</p>
+ */
 public class ReaderService implements Callable<String[]> {
 
 	private String filePath;
@@ -17,7 +24,7 @@ public class ReaderService implements Callable<String[]> {
 		this.filePath = filePath;
 	}
 
-	public String[] call() throws Exception {
+	public String[] call() throws IOException {
 		return getCommaSeparatedValuesFromConfigFile();
 	}
 

@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -18,7 +19,12 @@ import org.junit.Test;
  */
 public class CollectionsTest {
 	
-	Collections collections = new Collections();
+	Collections collections;
+	
+	@Before
+	public void setupTests() {
+		collections = new Collections();
+	}
 	
 	@Test
 	public void testCreateStringArray() {
