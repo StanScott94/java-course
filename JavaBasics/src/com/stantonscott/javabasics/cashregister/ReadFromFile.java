@@ -19,30 +19,29 @@ public class ReadFromFile implements Callable<Object> {
         this.object = object;
     }
 
+    private static List read(File file, List data) {
+        String row = null;
+        try (BufferedReader csvReader = new BufferedReader(new FileReader(file))) {
+            while ((row = csvReader.readLine()) != null) {
+                data.addAll(Arrays.asList(row.split(";")));
+            }
+        } catch (IOException i) {
+            System.out.println("Break");
+        }
+        return data;
+    }
 
     @Override
     public Object call() throws Exception {
-        String row = null;
 
         List<String> data = new ArrayList<>();
         Map items = new HashMap();
 
         if (object instanceof List) {
-
-            try (BufferedReader csvReader = new BufferedReader(new FileReader(file))) {
-                while ((row = csvReader.readLine()) != null) {
-                    data.addAll(Arrays.asList(row.split(";")));
-                }
-            } catch (IOException i) {
-                System.out.println("Break");
-            }
+            read(file, data);
             return data;
         } else if (object instanceof Map) {
-
-            BufferedReader csvReader = new BufferedReader(new FileReader(file));
-            while ((row = csvReader.readLine()) != null) {
-                data.addAll(Arrays.asList(row.split(";")));
-            }
+            read(file, data);
             for (String string : data) {
                 String[] dataForMap = string.split(",");
                 if (dataForMap[1].contains(".")) {
@@ -50,7 +49,6 @@ public class ReadFromFile implements Callable<Object> {
                 } else
                     items.put(dataForMap[0], Integer.parseInt(dataForMap[1]));
             }
-
             return items;
         } else
             return null;
