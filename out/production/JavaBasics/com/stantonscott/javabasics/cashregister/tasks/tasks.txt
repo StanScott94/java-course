@@ -1,0 +1,30 @@
+========================================================================================================================
+========================================================================================================================
+                                      Please complete these tasks
+========================================================================================================================
+========================================================================================================================
+
+
+========================================================================================================================
+TASK 1: configure menu, price and stock with external configuration files:
+
+-   update the setupShop to populate the menu, price and stock Collections with external CommaSeparatedValue files.
+    - class to update: /javabasics/cashregister/Main.java
+-   CommaSeparatedValue files can be found here: /java-course/JavaBasics/configfiles/cashregister/
+-   see notes for useful tips: /javabasics/cashregister/tasks/InputOutput.pdf
+-   solution: /javabasics/cashregister/solutions/task1/Main.java
+========================================================================================================================
+
+
+========================================================================================================================
+TASK 2: make the first TASK 1 multithreaded:
+
+Why should the main thread have to wait for each file to be read and configured separably when this could happen
+in parallel?
+
+-   update the setupShop method to be multithreaded.
+-   you can update your implementation or copy the code from the solution to TASK 1  and update that.
+    - TASK 1 solution: /javabasics/cashregister/solutions/task1/Main.java
+-   see notes for useful tips: /javabasics/cashregister/tasks/MultiThreadding.pdf
+-   solution: /javabasics/cashregister/solutions/task2/Main.java
+========================================================================================================================
