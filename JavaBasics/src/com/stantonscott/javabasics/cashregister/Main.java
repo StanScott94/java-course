@@ -24,7 +24,12 @@ public class Main {
     public static final File stockFile = new File("C:\\Projects\\java-course\\JavaBasics\\src\\com\\stantonscott\\javabasics\\cashregister\\StockItems");
     public static final File priceFile = new File("C:\\Projects\\java-course\\JavaBasics\\src\\com\\stantonscott\\javabasics\\cashregister\\Price");
 
+    //Defining global variables
 
+    public static List<String> menuItems = new ArrayList<String>();
+    public static Map<String, Integer> stock = new HashMap<>();
+    public static Map<String, Float> price = new HashMap<>();
+    public static Map<String, Integer> cart = new HashMap<>();
     // ============================================================================================
     //
     // Main program logic
@@ -34,15 +39,10 @@ public class Main {
     // main method where the program starts and ends
     public static void main(String[] args) {
 
-        // define global class variables
-        List<String> menuItems = new ArrayList<String>();
-        Map<String, Integer> stock = new HashMap<>();
-        Map<String, Float> price = new HashMap<>();
-        Map<String, Integer> cart = new HashMap<>();
 
         // configure menu and stock etc.
         try {
-            setupShop(menuItems, stock, price);
+            setupShop();
         } catch (Exception exception) {
             System.out.println("Shop can't be started. Please come later.");
         }
@@ -82,66 +82,16 @@ public class Main {
         }
     }
 
-    public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) throws IOException, ExecutionException, InterruptedException {
-
-        List <String> menu = new ArrayList<>();
-
-        menu = Executors.newFixedThreadPool(1).submit(new ReadFromFile(menuFile)).get();
-
-        for (int i = 0; i<menu.size();i++)
-        {
-            menuItems.add(menu.get(i));
-        }
+    public static void setupShop() throws IOException, ExecutionException, InterruptedException {
+        //Creates a list to display the menu
+        menuItems = (List<String>) Executors.newFixedThreadPool(1).submit(new ReadFromFile(menuFile, menuItems)).get();
 
         // creates a key value map to display and track stock amounts
-        stock = readFromFile(stock, stockFile);
+        stock = (Map<String, Integer>) Executors.newFixedThreadPool(1).submit(new ReadFromFile(stockFile, stock)).get();
         // creates a key value map to display and track prices
-        price = readFromFile(price, priceFile);
+        price = (Map<String, Float>) Executors.newFixedThreadPool(1).submit(new ReadFromFile(priceFile, price)).get();
     }
 
-    // ============================================================================================
-    //
-    // Reading config files from file
-    //
-    // ============================================================================================
-
-
-    public static List<String> readFromFile(List<String> items, File file) throws IOException {
-
-        String row = null;
-
-        List<String> data = new ArrayList<>();
-
-        BufferedReader csvReader = new BufferedReader(new FileReader(file));
-        while ((row = csvReader.readLine()) != null) {
-            data = Arrays.asList(row.split(";"));
-        }
-        for (int i = 0; i < data.size(); i++) {
-            items.add(data.get(i));
-        }
-        return items;
-    }
-
-    public static Map readFromFile(Map items, File file) throws IOException {
-
-        String row = null;
-
-        List<String> data = new ArrayList<>();
-
-        BufferedReader csvReader = new BufferedReader(new FileReader(file));
-        while ((row = csvReader.readLine()) != null) {
-            data = Arrays.asList(row.split(";"));
-        }
-        for (String string : data) {
-            String[] dataForMap = string.split(",");
-            if (dataForMap[1].contains(".")) {
-                items.put(dataForMap[0], Float.parseFloat(dataForMap[1]));
-            } else
-                items.put(dataForMap[0], Integer.parseInt(dataForMap[1]));
-        }
-
-        return items;
-    }
 
     // ============================================================================================
     //
@@ -233,7 +183,7 @@ public class Main {
     public static void displayMenu(List<String> menuItems) {
         displayBorder();
 
-        menuItems.forEach(menuItem -> System.out.println(menuItem));
+        menuItems.forEach(System.out::println);
         displayBorder();
     }
 
