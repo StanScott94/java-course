@@ -32,7 +32,7 @@ public class ReadFromFile implements Callable<Object> {
     }
 
     @Override
-    public Object call() throws Exception {
+    public Object call() {
 
         List<String> data = new ArrayList<>();
         Map items = new HashMap();

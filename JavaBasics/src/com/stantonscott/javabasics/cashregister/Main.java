@@ -82,16 +82,14 @@ public class Main {
         }
     }
 
-    public static void setupShop() throws IOException, ExecutionException, InterruptedException {
+    public static void setupShop() throws ExecutionException, InterruptedException {
         //Creates a list to display the menu
         menuItems = (List<String>) Executors.newFixedThreadPool(1).submit(new ReadFromFile(menuFile, menuItems)).get();
-
         // creates a key value map to display and track stock amounts
         stock = (Map<String, Integer>) Executors.newFixedThreadPool(1).submit(new ReadFromFile(stockFile, stock)).get();
         // creates a key value map to display and track prices
         price = (Map<String, Float>) Executors.newFixedThreadPool(1).submit(new ReadFromFile(priceFile, price)).get();
     }
-
 
     // ============================================================================================
     //
