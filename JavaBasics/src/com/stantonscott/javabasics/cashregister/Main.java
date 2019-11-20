@@ -3,7 +3,9 @@ package com.stantonscott.javabasics.cashregister;
 import com.sun.jdi.IntegerType;
 
 import java.io.*;
+import java.rmi.server.ExportException;
 import java.util.*;
+import java.util.concurrent.*;
 
 public class Main {
 
@@ -18,9 +20,9 @@ public class Main {
     private static final String OUT_OF_STOCK = "Item Out Of Stock";
     private static final String BORDER = "============================================";
     private static final String INVALID_INPUT = "Invalid Input";
-    private static final File menuFile = new File("C:\\Projects\\java-course\\JavaBasics\\src\\com\\stantonscott\\javabasics\\cashregister\\menu.txt");
-    private static final File stockFile = new File("C:\\Projects\\java-course\\JavaBasics\\src\\com\\stantonscott\\javabasics\\cashregister\\StockItems");
-    private static final File priceFile = new File("C:\\Projects\\java-course\\JavaBasics\\src\\com\\stantonscott\\javabasics\\cashregister\\Price");
+    public static final File menuFile = new File("C:\\Projects\\java-course\\JavaBasics\\src\\com\\stantonscott\\javabasics\\cashregister\\menu.txt");
+    public static final File stockFile = new File("C:\\Projects\\java-course\\JavaBasics\\src\\com\\stantonscott\\javabasics\\cashregister\\StockItems");
+    public static final File priceFile = new File("C:\\Projects\\java-course\\JavaBasics\\src\\com\\stantonscott\\javabasics\\cashregister\\Price");
 
 
     // ============================================================================================
@@ -41,9 +43,7 @@ public class Main {
         // configure menu and stock etc.
         try {
             setupShop(menuItems, stock, price);
-        }
-        catch (IOException i)
-        {
+        } catch (Exception exception) {
             System.out.println("Shop can't be started. Please come later.");
         }
 
@@ -82,9 +82,17 @@ public class Main {
         }
     }
 
-    public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) throws IOException {
-        // creates a list of strings to use when displaying the menu
-        menuItems = readFromFile(menuItems, menuFile);
+    public static void setupShop(List<String> menuItems, Map<String, Integer> stock, Map<String, Float> price) throws IOException, ExecutionException, InterruptedException {
+
+        List <String> menu = new ArrayList<>();
+
+        menu = Executors.newFixedThreadPool(1).submit(new ReadFromFile(menuFile)).get();
+
+        for (int i = 0; i<menu.size();i++)
+        {
+            menuItems.add(menu.get(i));
+        }
+
         // creates a key value map to display and track stock amounts
         stock = readFromFile(stock, stockFile);
         // creates a key value map to display and track prices
@@ -100,39 +108,29 @@ public class Main {
 
     public static List<String> readFromFile(List<String> items, File file) throws IOException {
 
-        int counter = 0;
         String row = null;
 
-        for (String string : items) {
-            counter++;
-        }
-
-        String[] data = new String[counter];
+        List<String> data = new ArrayList<>();
 
         BufferedReader csvReader = new BufferedReader(new FileReader(file));
         while ((row = csvReader.readLine()) != null) {
-            data = row.split(";");
+            data = Arrays.asList(row.split(";"));
         }
-        for (int i = 0; i < data.length; i++) {
-            items.add(data[i]);
+        for (int i = 0; i < data.size(); i++) {
+            items.add(data.get(i));
         }
         return items;
     }
 
     public static Map readFromFile(Map items, File file) throws IOException {
 
-        int counter = 0;
         String row = null;
 
-        for (Object entry : items.entrySet()) {
-            counter++;
-        }
-
-        String[] data = new String[counter];
+        List<String> data = new ArrayList<>();
 
         BufferedReader csvReader = new BufferedReader(new FileReader(file));
         while ((row = csvReader.readLine()) != null) {
-            data = row.split(";");
+            data = Arrays.asList(row.split(";"));
         }
         for (String string : data) {
             String[] dataForMap = string.split(",");
@@ -234,6 +232,7 @@ public class Main {
 
     public static void displayMenu(List<String> menuItems) {
         displayBorder();
+
         menuItems.forEach(menuItem -> System.out.println(menuItem));
         displayBorder();
     }
